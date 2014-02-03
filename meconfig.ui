@@ -43,7 +43,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
@@ -638,6 +638,9 @@
              <string>Enter username of new user</string>
             </property>
             <property name="text">
+             <string/>
+            </property>
+            <property name="placeholderText">
              <string>username</string>
             </property>
            </widget>
