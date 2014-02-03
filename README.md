@@ -7,7 +7,7 @@ Simple user configuration for MX
 #### TODO beta2
 
 - [x] use standard logo in black for consistent branding
-- [ ] have a "OK" return upon deleting a user as it does in adding one
+- [x] have a "OK" return upon deleting a user as it does in adding one
 - [ ] change order of tabs so arranged by approximate frequency of use: add, delete, repair, copy/sync
 - [ ] Expand the About button, adding version number and a Help link to /usr/local/share/doc/mxapps.html that I will create later
 - [x] make "username" disappear on Add tab when box is clicked
