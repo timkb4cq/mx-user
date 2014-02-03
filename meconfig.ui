@@ -43,7 +43,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="icon">
@@ -96,7 +96,7 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Restore group memberships to MEPIS defaults</string>
+             <string>Restore group memberships to MX defaults</string>
             </property>
             <property name="whatsThis">
              <string/>
@@ -118,7 +118,7 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Restore Firefox configs to MEPIS defaults</string>
+             <string>Restore browser configs to MX defaults</string>
             </property>
             <property name="whatsThis">
              <string/>
@@ -364,7 +364,7 @@
           </sizepolicy>
          </property>
          <property name="title">
-          <string>What to Copy/Sync</string>
+          <string/>
          </property>
          <layout class="QGridLayout">
           <property name="margin">
@@ -373,7 +373,23 @@
           <property name="spacing">
            <number>6</number>
           </property>
-          <item row="0" column="0">
+          <item row="3" column="1">
+           <widget class="QRadioButton" name="sharedRadioButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Select to copy/sync Shared</string>
+            </property>
+            <property name="text">
+             <string>Sh&amp;ared folder</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
            <widget class="QRadioButton" name="entireRadioButton">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
@@ -392,7 +408,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="3" column="0">
            <widget class="QRadioButton" name="qupRadioButton">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
@@ -401,14 +417,14 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Select to copy/sync firefox/mozilla</string>
+             <string>Select to copy/sync default browser</string>
             </property>
             <property name="text">
              <string>Qupzilla folder</string>
             </property>
            </widget>
           </item>
-          <item row="0" column="1">
+          <item row="1" column="1">
            <widget class="QRadioButton" name="docsRadioButton">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
@@ -424,19 +440,10 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="1">
-           <widget class="QRadioButton" name="sharedRadioButton">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip">
-             <string>Select to copy/sync Shared</string>
-            </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>Sh&amp;ared folder</string>
+             <string>What to copy/sync:</string>
             </property>
            </widget>
           </item>
@@ -826,7 +833,7 @@
         </sizepolicy>
        </property>
        <property name="toolTip">
-        <string>Select desktop to copy from</string>
+        <string>Select user name</string>
        </property>
       </widget>
       <widget class="QLabel" name="deleteUserLabel_2">

@@ -11,7 +11,7 @@ Simple user configuration for MX
 - [ ] change order of tabs so arranged by approximate frequency of use: add, delete, repair, copy/sync
 - [ ] Expand the About button, adding version number and a Help link to /usr/local/share/doc/mxapps.html that I will create later
 - [x] make "username" disappear on Add tab when box is clicked
-- [ ] Change "What to Copy/Sync" to a simple indented sentence--it is not another category
+- [x] Change "What to Copy/Sync" to a simple indented sentence--it is not another category
 
 
 #### TODO before Final:
