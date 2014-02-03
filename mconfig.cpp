@@ -406,7 +406,30 @@ void MConfig::applyDelete() {
     } else {
       cmd = QString("deluser %1").arg(deleteUserCombo->currentText());
     }
-    system(cmd.toAscii());
+    FILE *fp = popen(cmd.toAscii(), "w");
+    bool fpok = true;
+    if (fp != NULL) {
+      sleep(1);
+        if (fputs(cmd.toAscii(), fp) >= 0) {
+           fflush(fp);
+           sleep(1);
+           if (fputs(cmd.toAscii(), fp) < 0) {
+             fpok = false;
+           }
+        } else {
+          fpok = false;
+        }
+        pclose(fp);
+    } else {
+      fpok = false;
+    }
+    if (fpok) {
+      QMessageBox::information(0, QString::null,
+        tr("The user has been deleted."));
+    } else {
+      QMessageBox::critical(0, QString::null,
+        tr("Failed to delete the user."));
+    }
     refresh();
   }
 }
