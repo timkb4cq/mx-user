@@ -214,7 +214,7 @@ void MConfig::refreshDesktop() {
 }
 
 void MConfig::refreshAdd() {
-  userNameEdit->setText(tr("username"));
+  userNameEdit->setText(tr(""));
   userPasswordEdit->setText("");
   userPassword2Edit->setText("");
 }
