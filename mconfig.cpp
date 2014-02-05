@@ -132,28 +132,35 @@ void MConfig::refresh() {
   int i = tabWidget->currentIndex();
   switch (i) {
     case 1:
-      refreshDesktop();
-      buttonApply->setEnabled(true);
-      buttonOk->setEnabled(false);
-      break;
-
-    case 2:
-      refreshAdd();
-      buttonApply->setEnabled(false);
-      buttonOk->setEnabled(true);
-      break;
-
-    case 3:
       refreshDelete();
       buttonApply->setEnabled(false);
       buttonOk->setEnabled(true);
       break;
 
-    default:
+    case 2:
       refreshRestore();
       buttonApply->setEnabled(false);
       buttonOk->setEnabled(true);
       break;
+
+    case 3:
+      refreshDesktop();
+      buttonApply->setEnabled(true);
+      buttonOk->setEnabled(false);
+      break;
+
+    case 4:
+      break;
+
+    default:
+      refreshAdd();
+      buttonApply->setEnabled(false);
+      buttonOk->setEnabled(true);
+      break;
+
+
+
+
   }
 }
 
@@ -563,27 +570,30 @@ void MConfig::on_buttonApply_clicked() {
   int i = tabWidget->currentIndex();
   switch (i) {
     case 1:
-      applyDesktop();
-      buttonApply->setEnabled(false);
-      break;
-
-    case 2:
-      setCursor(QCursor(Qt::WaitCursor));
-      applyAdd();
-      setCursor(QCursor(Qt::ArrowCursor));
-      buttonApply->setEnabled(false);
-      break;
-
-    case 3:
       setCursor(QCursor(Qt::WaitCursor));
       applyDelete();
       setCursor(QCursor(Qt::ArrowCursor));
       buttonApply->setEnabled(false);
       break;
 
-    default:
+    case 2:
       setCursor(QCursor(Qt::WaitCursor));
       applyRestore();
+      setCursor(QCursor(Qt::ArrowCursor));
+      buttonApply->setEnabled(false);
+      break;
+
+    case 3:
+      applyDesktop();
+      buttonApply->setEnabled(false);
+      break;
+
+    case 4:
+      break;
+
+    default:
+      setCursor(QCursor(Qt::WaitCursor));
+      applyAdd();
       setCursor(QCursor(Qt::ArrowCursor));
       buttonApply->setEnabled(false);
       break;
