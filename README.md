@@ -16,6 +16,7 @@ Simple user configuration for MX
 
 #### TODO before Final:
 - Add tab
+- Add tab
   - [ ] add "User group (optional)" to the existing "Add User Account" category
   - [ ] When a group is named that does not exist, up pops a dialog box "Create a new group named <groupname>?"
   - [ ] Create a new category "Add Group to system" (addgroup command) using same confirm box as above
