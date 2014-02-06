@@ -20,6 +20,9 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#include <QDesktopServices>
+#include <QUrl>
+
 MConfig::MConfig(QWidget* parent) : QDialog(parent) {
   setupUi(this);
   setWindowIcon(QApplication::windowIcon());
@@ -656,6 +659,13 @@ void MConfig::executeChild(const char* cmd, const char* param)
 
 // show about
 void MConfig::on_buttonAbout_clicked() {
-  QMessageBox::about(0, tr("About"),
-      tr("<p><b>MX User Assistant</b></p>"));
+     QMessageBox msgBox(QMessageBox::NoIcon, tr("About MX User Assistant"),
+                        tr("<img src=\"/usr/share/icons/mx-user.png\"\
+                        alt=\"logo\" /><p align=\"center\"><b><h2>MX User Assistant</h2></b></p><p align=\"center\">14b3+git20140206</p><p><h3>Simple user\
+                        configuration for antiX MX</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">\
+                        http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">Copyright (c) antiX<br /><br /></p>"), 0, this);
+     msgBox.addButton(tr("&License"), QMessageBox::AcceptRole);
+     msgBox.addButton(QMessageBox::Cancel);
+     if (msgBox.exec() == QMessageBox::AcceptRole)
+           QDesktopServices::openUrl(QUrl("file:///usr/local/share/doc/mx-user-license.html"));
 }

@@ -8,13 +8,16 @@ Simple user configuration for MX
 
 - [x] use standard logo in black for consistent branding
 - [x] have a "OK" return upon deleting a user as it does in adding one
-- [ ] change order of tabs so arranged by approximate frequency of use: add, delete, repair, copy/sync
-- [ ] Expand the About button, adding version number and a Help link to /usr/local/share/doc/mxapps.html that I will create later
+- [x] change order of tabs so arranged by approximate frequency of use: add, delete, repair, copy/sync
+- [x] Expand the About button, adding version number 
 - [x] make "username" disappear on Add tab when box is clicked
 - [x] Change "What to Copy/Sync" to a simple indented sentence--it is not another category
 
 
 #### TODO before Final:
+
+- [ ] add a Help link to /usr/local/share/doc/mxapps.html that I will create later
+
 - Add tab
   - [ ] add "User group (optional)" to the existing "Add User Account" category
   - [ ] When a group is named that does not exist, up pops a dialog box "Create a new group named <groupname>?"
