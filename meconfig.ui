@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>676</width>
+    <width>718</width>
     <height>537</height>
    </rect>
   </property>
@@ -27,8 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff/>
-   </iconset>
+    <normaloff>../../../../../usr/share/icons/mx-user.png</normaloff>../../../../../usr/share/icons/mx-user.png</iconset>
   </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>
@@ -825,14 +824,14 @@
     </widget>
    </item>
    <item>
-    <layout class="QGridLayout">
+    <layout class="QGridLayout" columnstretch="0,0,0,0,0,0,0,0,0,0,0">
      <property name="margin">
       <number>0</number>
      </property>
      <property name="spacing">
       <number>5</number>
      </property>
-     <item row="0" column="5">
+     <item row="0" column="7">
       <widget class="QPushButton" name="buttonOk">
        <property name="toolTip">
         <string>Apply any changes then quit</string>
@@ -855,56 +854,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="1">
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>116</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="0" column="4">
-      <spacer>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>75</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="0" column="0">
-      <widget class="QPushButton" name="buttonAbout">
-       <property name="toolTip">
-        <string>About this application</string>
-       </property>
-       <property name="text">
-        <string>About...</string>
-       </property>
-       <property name="icon">
-        <iconset>
-         <normaloff>../../../../../usr/share/icons/Tango/16x16/apps/help-browser.png</normaloff>../../../../../usr/share/icons/Tango/16x16/apps/help-browser.png</iconset>
-       </property>
-       <property name="shortcut">
-        <string/>
-       </property>
-       <property name="autoDefault">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="6">
+     <item row="0" column="8">
       <widget class="QPushButton" name="buttonApply">
        <property name="toolTip">
         <string>Apply any changes</string>
@@ -921,7 +871,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="7">
+     <item row="0" column="10">
       <widget class="QPushButton" name="buttonCancel">
        <property name="toolTip">
         <string>Cancel any changes then quit</string>
@@ -941,7 +891,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="2">
+     <item row="0" column="5">
       <widget class="QLabel" name="label">
        <property name="maximumSize">
         <size>
@@ -963,6 +913,75 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="buttonHelp">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Display help </string>
+       </property>
+       <property name="text">
+        <string>&amp;Help</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../../usr/share/icons/Tango/16x16/apps/gnome-help.png</normaloff>../../../../../usr/share/icons/Tango/16x16/apps/gnome-help.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Alt+H</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="buttonAbout">
+       <property name="toolTip">
+        <string>About this application</string>
+       </property>
+       <property name="text">
+        <string>A&amp;bout...</string>
+       </property>
+       <property name="icon">
+        <iconset>
+         <normaloff>../../../../../usr/share/icons/Tango/16x16/apps/accessories-text-editor.png</normaloff>../../../../../usr/share/icons/Tango/16x16/apps/accessories-text-editor.png</iconset>
+       </property>
+       <property name="shortcut">
+        <string>Alt+B</string>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="6">
+      <spacer name="horizontalSpacer2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="2">
+      <spacer name="horizontalSpacer1">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
     </layout>
    </item>
   </layout>
@@ -970,7 +989,6 @@
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>buttonAbout</tabstop>
   <tabstop>buttonOk</tabstop>
   <tabstop>buttonApply</tabstop>
   <tabstop>buttonCancel</tabstop>
