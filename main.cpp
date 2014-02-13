@@ -22,7 +22,7 @@
 
 int main( int argc, char ** argv ) {
   QApplication app(argc, argv);
-  app.setWindowIcon(QIcon("/usr/share/icons/hicolor/48x48/apps/mx-user.png"));
+  app.setWindowIcon(QIcon("/usr/share/icons/mx-user.png"));
 
   QTranslator qtTran;
   qtTran.load(QString("qt_") + QLocale::system().name());
