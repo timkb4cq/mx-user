@@ -48,10 +48,12 @@ public:
     void refreshDesktop();
     void refreshAdd();
     void refreshDelete();
+    void refreshGroups();
     void applyRestore();
     void applyDesktop();
     void applyAdd();
     void applyDelete();
+    void applyGroup();
 
 public slots:
     void syncStart();
@@ -63,6 +65,8 @@ public slots:
     virtual void on_userComboBox_activated();
     virtual void on_deleteUserCombo_activated();
     virtual void on_userNameEdit_textEdited();
+    virtual void on_groupNameEdit_textEdited();
+    virtual void on_deleteGroupCombo_activated();
     virtual void on_tabWidget_currentChanged();
     virtual void on_buttonApply_clicked();
     virtual void on_buttonCancel_clicked();

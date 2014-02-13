@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../../../usr/share/icons/mx-user.png</normaloff>../../../../../usr/share/icons/mx-user.png</iconset>
+    <normaloff>../../../../usr/share/icons/mx-user.png</normaloff>../../../../usr/share/icons/mx-user.png</iconset>
   </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>
@@ -47,7 +47,7 @@
      <widget class="QWidget" name="addUserTab">
       <attribute name="icon">
        <iconset>
-        <normaloff>../../../../../usr/share/icons/Tango/16x16/actions/add.png</normaloff>../../../../../usr/share/icons/Tango/16x16/actions/add.png</iconset>
+        <normaloff>../../../../usr/share/icons/Tango/16x16/actions/add.png</normaloff>../../../../usr/share/icons/Tango/16x16/actions/add.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Add User</string>
@@ -206,7 +206,7 @@
      <widget class="QWidget" name="delUserTab">
       <attribute name="icon">
        <iconset>
-        <normaloff>../../../../../usr/share/icons/Tango/16x16/actions/gtk-remove.png</normaloff>../../../../../usr/share/icons/Tango/16x16/actions/gtk-remove.png</iconset>
+        <normaloff>../../../../usr/share/icons/Tango/16x16/actions/gtk-remove.png</normaloff>../../../../usr/share/icons/Tango/16x16/actions/gtk-remove.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Delete User</string>
@@ -314,7 +314,7 @@
      <widget class="QWidget" name="repairTab">
       <attribute name="icon">
        <iconset>
-        <normaloff>../../../../../usr/share/icons/Tango/16x16/categories/package_development.png</normaloff>../../../../../usr/share/icons/Tango/16x16/categories/package_development.png</iconset>
+        <normaloff>../../../../usr/share/icons/Tango/16x16/categories/package_development.png</normaloff>../../../../usr/share/icons/Tango/16x16/categories/package_development.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Repair</string>
@@ -476,7 +476,7 @@
      <widget class="QWidget" name="copyTab">
       <attribute name="icon">
        <iconset>
-        <normaloff>../../../../../usr/share/icons/Tango/16x16/actions/edit-copy.png</normaloff>../../../../../usr/share/icons/Tango/16x16/actions/edit-copy.png</iconset>
+        <normaloff>../../../../usr/share/icons/Tango/16x16/actions/edit-copy.png</normaloff>../../../../usr/share/icons/Tango/16x16/actions/edit-copy.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Copy/Sync</string>
@@ -808,6 +808,142 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="manageGroups">
+      <attribute name="icon">
+       <iconset>
+        <normaloff>../../../../../usr/share/icons/Tango/16x16/apps/system-users.png</normaloff>../../../../../usr/share/icons/Tango/16x16/apps/system-users.png</iconset>
+      </attribute>
+      <attribute name="title">
+       <string>Manage Groups</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QGroupBox" name="addBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Add Group</string>
+         </property>
+         <layout class="QGridLayout" name="_3">
+          <property name="margin">
+           <number>9</number>
+          </property>
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="groupNameEdit">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Enter username of new user</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="placeholderText">
+             <string>groupname</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="groupNameLabel">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Username of new user</string>
+            </property>
+            <property name="text">
+             <string>Group name:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QGroupBox" name="deleteBox">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="title">
+          <string>Delete Group</string>
+         </property>
+         <layout class="QGridLayout" name="_2">
+          <property name="margin">
+           <number>9</number>
+          </property>
+          <property name="spacing">
+           <number>6</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="deleteGroupLabel">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Select user to delete</string>
+            </property>
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Plain</enum>
+            </property>
+            <property name="text">
+             <string>Group to delete:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="deleteGroupCombo">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Select user to delete</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </item>
    <item>
@@ -841,7 +977,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../../usr/share/mx-user/icons/dialog-ok.png</normaloff>../../../../../usr/share/mx-user/icons/dialog-ok.png</iconset>
+         <normaloff>../../../../usr/share/mx-user/icons/dialog-ok.png</normaloff>../../../../usr/share/mx-user/icons/dialog-ok.png</iconset>
        </property>
        <property name="shortcut">
         <string/>
@@ -864,7 +1000,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../../usr/share/mx-user/icons/configure.png</normaloff>../../../../../usr/share/mx-user/icons/configure.png</iconset>
+         <normaloff>../../../../usr/share/mx-user/icons/configure.png</normaloff>../../../../usr/share/mx-user/icons/configure.png</iconset>
        </property>
        <property name="shortcut">
         <string>Alt+A</string>
@@ -881,7 +1017,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../../usr/share/icons/Tango/16x16/actions/gtk-cancel.png</normaloff>../../../../../usr/share/icons/Tango/16x16/actions/gtk-cancel.png</iconset>
+         <normaloff>../../../../usr/share/icons/Tango/16x16/actions/gtk-cancel.png</normaloff>../../../../usr/share/icons/Tango/16x16/actions/gtk-cancel.png</iconset>
        </property>
        <property name="shortcut">
         <string>Alt+N</string>
@@ -906,7 +1042,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>../../../../../usr/local/share/icons/mxfcelogo.png</pixmap>
+        <pixmap>../../../../usr/local/share/icons/mxfcelogo.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
@@ -929,7 +1065,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../../usr/share/icons/Tango/16x16/apps/gnome-help.png</normaloff>../../../../../usr/share/icons/Tango/16x16/apps/gnome-help.png</iconset>
+         <normaloff>../../../../usr/share/icons/Tango/16x16/apps/gnome-help.png</normaloff>../../../../usr/share/icons/Tango/16x16/apps/gnome-help.png</iconset>
        </property>
        <property name="shortcut">
         <string>Alt+H</string>
@@ -946,7 +1082,7 @@
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../../usr/share/icons/Tango/16x16/apps/accessories-text-editor.png</normaloff>../../../../../usr/share/icons/Tango/16x16/apps/accessories-text-editor.png</iconset>
+         <normaloff>../../../../usr/share/icons/Tango/16x16/apps/accessories-text-editor.png</normaloff>../../../../usr/share/icons/Tango/16x16/apps/accessories-text-editor.png</iconset>
        </property>
        <property name="shortcut">
         <string>Alt+B</string>
