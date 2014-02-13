@@ -153,6 +153,9 @@ void MConfig::refresh() {
       break;
 
     case 4:
+      refreshGroups();
+      buttonApply->setEnabled(false);
+      buttonOk->setEnabled(true);
       break;
 
     default:
@@ -253,6 +256,29 @@ void MConfig::refreshDelete() {
     }
     pclose(fp);
   }
+}
+
+void MConfig::refreshGroups() {
+  char line[130];
+  FILE *fp;
+  int i;
+  groupNameEdit->setText(tr(""));
+  addBox->setEnabled(true);
+  deleteGroupCombo->clear();
+  deleteGroupCombo->addItem("none");
+  deleteBox->setEnabled(true);
+  fp = popen("cat /etc/group | cut -f 1 -d :", "r");
+  if (fp != NULL) {
+    while (fgets(line, sizeof line, fp) != NULL) {
+      i = strlen(line);
+      line[--i] = '\0';
+     if (line != NULL && strlen(line) > 1 && strcmp(line, "root") != 0 ) {
+        deleteGroupCombo->addItem(line);
+      }
+    }
+    pclose(fp);
+  }
+  
 }
 
 // apply but do not close
@@ -444,6 +470,59 @@ void MConfig::applyDelete() {
   }
 }
 
+void MConfig::applyGroup() {
+  //checks if adding or removing groups
+  if (addBox->isEnabled()) {
+    //validate data before proceeding
+    // see if groupname is reasonable length
+    if (groupNameEdit->text().length() < 2) {
+      QMessageBox::critical(0, QString::null,
+                            tr("The group name needs to be at least 2 characters long. Please select a longer name before proceeding."));
+                            return;
+    }
+    // see if username contains whitespace
+    QString cmd = QString("echo '^%1' | grep ^.*[[:space:]].").arg( groupNameEdit->text());
+    if  (system(cmd.toAscii()) == 0) {
+      QMessageBox::critical(0, QString::null,
+                            tr("The group name may not contain any spaces. Please select another name."));
+                            return;
+    }
+    // check that group name is not already used
+    cmd = QString("grep '^%1' /etc/group >/dev/null").arg( groupNameEdit->text());
+    if (system(cmd.toAscii()) == 0) {
+      QMessageBox::critical(0, QString::null,
+                            tr("Sorry that group name already exists. Please select a different name."));
+                            return;
+    }
+    // run addgroup command
+    cmd = QString("addgroup --system %1").arg( groupNameEdit->text());
+    if (system(cmd.toAscii()) == 0) {
+      QMessageBox::information(0, QString::null,
+                               tr("The system group was added ok."));
+    } else {
+      QMessageBox::critical(0, QString::null,
+                            tr("Failed to add the system group."));
+    }
+  }  else { //deleting group if addBox disabled
+  QString cmd = QString(tr("This action can not be undone. Are you sure you want to delete group %1?")).arg(deleteGroupCombo->currentText());
+  int ans = QMessageBox::warning(this, QString::null, cmd,
+          tr("Yes"), tr("No"));
+  if (ans == 0) {
+      cmd = QString("delgroup %1").arg(deleteGroupCombo->currentText());
+      if (system(cmd.toAscii()) == 0) {
+        QMessageBox::information(0, QString::null,
+          tr("The group has been deleted."));
+      } else {
+        QMessageBox::critical(0, QString::null,
+          tr("Failed to delete the group."));
+      }
+    }
+  }
+  refresh();
+}
+
+
+
 /////////////////////////////////////////////////////////////////////////
 // sync process events
 
@@ -564,6 +643,16 @@ void MConfig::on_userNameEdit_textEdited() {
   buttonApply->setEnabled(true);
 }
 
+void MConfig::on_groupNameEdit_textEdited() {
+  deleteBox->setEnabled(false);
+  buttonApply->setEnabled(true);
+}
+
+void MConfig::on_deleteGroupCombo_activated() {
+  addBox->setEnabled(false);
+  buttonApply->setEnabled(true);
+}
+
 // apply but do not close
 void MConfig::on_buttonApply_clicked() {
   if (!buttonApply->isEnabled()) {
@@ -592,6 +681,10 @@ void MConfig::on_buttonApply_clicked() {
       break;
 
     case 4:
+      setCursor(QCursor(Qt::WaitCursor));
+      applyGroup();
+      setCursor(QCursor(Qt::ArrowCursor));
+      buttonApply->setEnabled(false);
       break;
 
     default:
@@ -661,7 +754,7 @@ void MConfig::executeChild(const char* cmd, const char* param)
 void MConfig::on_buttonAbout_clicked() {
   QMessageBox msgBox(QMessageBox::NoIcon, tr("About MX User Assistant"),
     tr("<img src=\"/usr/share/icons/mx-user.png\"\
-      alt=\"logo\" /><p align=\"center\"><b><h2>MX User Assistant</h2></b></p><p align=\"center\">14b3+git20140206</p><p><h3>Simple user\
+      alt=\"logo\" /><p align=\"center\"><b><h2>MX User Assistant</h2></b></p><p align=\"center\">14b3+git20140213</p><p><h3>Simple user\
       configuration for antiX MX</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">\
       http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">Copyright (c) antiX<br /><br /></p>"), 0, this);
   msgBox.addButton(tr("&License"), QMessageBox::AcceptRole);
