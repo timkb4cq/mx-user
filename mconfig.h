@@ -49,11 +49,14 @@ public:
     void refreshAdd();
     void refreshDelete();
     void refreshGroups();
+    void refreshMembership();
     void applyRestore();
     void applyDesktop();
     void applyAdd();
     void applyDelete();
     void applyGroup();
+    void applyMembership();
+    void buildListGroups();
 
 public slots:
     void syncStart();
@@ -63,6 +66,7 @@ public slots:
     virtual void show();
     virtual void on_fromUserComboBox_activated();
     virtual void on_userComboBox_activated();
+    virtual void on_userComboMembership_activated();
     virtual void on_deleteUserCombo_activated();
     virtual void on_userNameEdit_textEdited();
     virtual void on_groupNameEdit_textEdited();

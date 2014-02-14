@@ -158,15 +158,17 @@ void MConfig::refresh() {
       buttonOk->setEnabled(true);
       break;
 
+    case 5:
+      refreshMembership();
+      buttonApply->setEnabled(false);
+      buttonOk->setEnabled(true);
+      break;
+
     default:
       refreshAdd();
       buttonApply->setEnabled(false);
       buttonOk->setEnabled(true);
       break;
-
-
-
-
   }
 }
 
@@ -278,8 +280,35 @@ void MConfig::refreshGroups() {
     }
     pclose(fp);
   }
-  
 }
+
+void MConfig::refreshMembership() {
+  char line[130];
+  char line2[130];
+  char *tok;
+  FILE *fp;
+  int i;
+  userComboMembership->clear();
+  userComboMembership->addItem("none");
+  userComboMembership->addItem("root");
+  listGroups->clear();
+  fp = popen("ls -1 /home", "r");
+  if (fp != NULL) {
+    while (fgets(line, sizeof line, fp) != NULL) {
+      i = strlen(line);
+      line[--i] = '\0';
+      tok = strtok(line, " ");
+      if (tok != NULL && strlen(tok) > 1 && strncmp(tok, "ftp", 3) != 0) {
+        sprintf(line2, "grep '^%s' /etc/passwd >/dev/null", tok);
+        if (system(line2) == 0) {
+          userComboMembership->addItem(tok);
+        }
+      }
+    }
+    pclose(fp);
+  }
+}
+
 
 // apply but do not close
 void MConfig::applyRestore() {
@@ -477,37 +506,37 @@ void MConfig::applyGroup() {
     // see if groupname is reasonable length
     if (groupNameEdit->text().length() < 2) {
       QMessageBox::critical(0, QString::null,
-                            tr("The group name needs to be at least 2 characters long. Please select a longer name before proceeding."));
-                            return;
+        tr("The group name needs to be at least 2 characters long. Please select a longer name before proceeding."));
+        return;
     }
     // see if username contains whitespace
     QString cmd = QString("echo '^%1' | grep ^.*[[:space:]].").arg( groupNameEdit->text());
     if  (system(cmd.toAscii()) == 0) {
       QMessageBox::critical(0, QString::null,
-                            tr("The group name may not contain any spaces. Please select another name."));
-                            return;
+        tr("The group name may not contain any spaces. Please select another name."));
+        return;
     }
     // check that group name is not already used
     cmd = QString("grep '^%1' /etc/group >/dev/null").arg( groupNameEdit->text());
     if (system(cmd.toAscii()) == 0) {
       QMessageBox::critical(0, QString::null,
-                            tr("Sorry that group name already exists. Please select a different name."));
-                            return;
+        tr("Sorry that group name already exists. Please select a different name."));
+        return;
     }
     // run addgroup command
     cmd = QString("addgroup --system %1").arg( groupNameEdit->text());
     if (system(cmd.toAscii()) == 0) {
       QMessageBox::information(0, QString::null,
-                               tr("The system group was added ok."));
+        tr("The system group was added ok."));
     } else {
       QMessageBox::critical(0, QString::null,
-                            tr("Failed to add the system group."));
+        tr("Failed to add the system group."));
     }
   }  else { //deleting group if addBox disabled
-  QString cmd = QString(tr("This action can not be undone. Are you sure you want to delete group %1?")).arg(deleteGroupCombo->currentText());
-  int ans = QMessageBox::warning(this, QString::null, cmd,
-          tr("Yes"), tr("No"));
-  if (ans == 0) {
+    QString cmd = QString(tr("This action can not be undone. Are you sure you want to delete group %1?")).arg(deleteGroupCombo->currentText());
+    int ans = QMessageBox::warning(this, QString::null, cmd,
+                 tr("Yes"), tr("No"));
+    if (ans == 0) {
       cmd = QString("delgroup %1").arg(deleteGroupCombo->currentText());
       if (system(cmd.toAscii()) == 0) {
         QMessageBox::information(0, QString::null,
@@ -521,6 +550,30 @@ void MConfig::applyGroup() {
   refresh();
 }
 
+void MConfig::applyMembership() {
+  QString cmd;
+  //Add all WidgetItems from listGroups
+  QList<QListWidgetItem *> items = listGroups->findItems(QString("*"), Qt::MatchWrap | Qt::MatchWildcard);
+  while (!items.isEmpty()) {
+    QListWidgetItem *item = items.takeFirst();
+    if (item->checkState() == 2) {
+      cmd += item->text() + ",";
+    }
+  }
+  cmd.chop(1);
+  int ans = QMessageBox::warning(this, QString::null, tr("Are you sure you want to make these changes?"),
+          tr("Yes"), tr("No"));
+  if (ans == 0) {
+      cmd = QString("usermod -G %1 %2").arg(cmd).arg(userComboMembership->currentText());
+      if (system(cmd.toAscii()) == 0) {
+        QMessageBox::information(0, QString::null,
+          tr("The changes have been applied."));
+      } else {
+        QMessageBox::critical(0, QString::null,
+          tr("Failed to apply group changes"));
+      }
+  }
+}
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -618,7 +671,7 @@ void MConfig::on_fromUserComboBox_activated() {
       line[--i] = '\0';
       tok = strtok(line, " ");
       if (tok != NULL && strlen(tok) > 1 && strncmp(tok, "ftp", 3) != 0) {
-        cmd= QString("grep '^%1' /etc/passwd >/dev/null").arg(tok);
+        cmd = QString("grep '^%1' /etc/passwd >/dev/null").arg(tok);
 	if (system(cmd.toAscii()) == 0 && fromUserComboBox->currentText().compare(tok) != 0) {
 	  cmd = QString("who | grep '%1'").arg(tok);
           if (system(cmd.toAscii()) != 0) {
@@ -651,6 +704,44 @@ void MConfig::on_groupNameEdit_textEdited() {
 void MConfig::on_deleteGroupCombo_activated() {
   addBox->setEnabled(false);
   buttonApply->setEnabled(true);
+}
+
+void MConfig::on_userComboMembership_activated() {
+  buildListGroups();
+  buttonApply->setEnabled(true);
+}
+
+void MConfig::buildListGroups(){
+  char line[130];
+  FILE *fp;
+  int i;
+  listGroups->clear();
+  //read /etc/group and add all the groups in the listGroups
+  fp = popen("cat /etc/group | cut -f 1 -d :", "r");
+  if (fp != NULL) {
+    while (fgets(line, sizeof line, fp) != NULL) {
+      i = strlen(line);
+      line[--i] = '\0';
+     if (line != NULL && strlen(line) > 1) {
+        QListWidgetItem *item = new QListWidgetItem;
+        item->setText(line);
+        item->setCheckState(Qt::Unchecked);
+        listGroups->addItem(item);
+      }
+    }
+    pclose(fp);
+  }
+  //check the boxes for the groups that the current user belongs to
+  QString cmd = QString("id -nG %1").arg(userComboMembership->currentText());
+  QString out = getCmdOut(cmd);
+  QStringList out_tok = out.split(" ");
+    while (!out_tok.isEmpty()) {
+      QString text = out_tok.takeFirst();
+      QList<QListWidgetItem*> list = listGroups->findItems(text, Qt::MatchExactly);
+        while (!list.isEmpty()) {
+          list.takeFirst()->setCheckState(Qt::Checked);
+        }
+    }
 }
 
 // apply but do not close
@@ -687,11 +778,16 @@ void MConfig::on_buttonApply_clicked() {
       buttonApply->setEnabled(false);
       break;
 
+    case 5:
+      setCursor(QCursor(Qt::WaitCursor));
+      applyMembership();
+      setCursor(QCursor(Qt::ArrowCursor));
+      break;
+
     default:
       setCursor(QCursor(Qt::WaitCursor));
       applyAdd();
       setCursor(QCursor(Qt::ArrowCursor));
-      buttonApply->setEnabled(false);
       break;
   }
 }
@@ -754,7 +850,7 @@ void MConfig::executeChild(const char* cmd, const char* param)
 void MConfig::on_buttonAbout_clicked() {
   QMessageBox msgBox(QMessageBox::NoIcon, tr("About MX User Assistant"),
     tr("<img src=\"/usr/share/icons/mx-user.png\"\
-      alt=\"logo\" /><p align=\"center\"><b><h2>MX User Assistant</h2></b></p><p align=\"center\">14b3+git20140213</p><p><h3>Simple user\
+      alt=\"logo\" /><p align=\"center\"><b><h2>MX User Assistant</h2></b></p><p align=\"center\">MX14+git20140213</p><p><h3>Simple user\
       configuration for antiX MX</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">\
       http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">Copyright (c) antiX<br /><br /></p>"), 0, this);
   msgBox.addButton(tr("&License"), QMessageBox::AcceptRole);
