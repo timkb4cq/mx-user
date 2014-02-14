@@ -290,7 +290,6 @@ void MConfig::refreshMembership() {
   int i;
   userComboMembership->clear();
   userComboMembership->addItem("none");
-  userComboMembership->addItem("root");
   listGroups->clear();
   fp = popen("ls -1 /home", "r");
   if (fp != NULL) {
