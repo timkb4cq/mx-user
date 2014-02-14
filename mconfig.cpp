@@ -651,11 +651,6 @@ void MConfig::syncDone(int exitCode, QProcess::ExitStatus exitStatus) {
 /////////////////////////////////////////////////////////////////////////
 // slots
 
-void MConfig::show() {
-  QDialog::show();
-  refresh();
-}
-
 void MConfig::on_fromUserComboBox_activated() {
   char line[130];
   QString cmd;

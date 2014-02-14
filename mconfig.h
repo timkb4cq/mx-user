@@ -63,7 +63,6 @@ public slots:
     void syncTime();
     void syncDone(int exitCode, QProcess::ExitStatus exitStatus);
 
-    virtual void show();
     virtual void on_fromUserComboBox_activated();
     virtual void on_userComboBox_activated();
     virtual void on_userComboMembership_activated();
