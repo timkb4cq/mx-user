@@ -466,7 +466,8 @@ void MConfig::applyDelete() {
           tr("Yes"), tr("No"));
   if (ans == 0) {
     if (deleteHomeCheckBox->isChecked()) {
-      cmd = QString("killall -u %1").arg( deleteUserCombo->curentText());	
+      cmd = QString("killall -u %1").arg( deleteUserCombo->currentText());
+      system(cmd.toAscii());
       cmd = QString("deluser --force --remove-home %1").arg( deleteUserCombo->currentText());
     } else {
       cmd = QString("deluser %1").arg(deleteUserCombo->currentText());
