@@ -1,0 +1,15 @@
+Source: mx-user
+Section: system
+Priority: optional
+Maintainer: Steven Pusser (Stevo) <maintainer@mepiscommunity.org>
+Build-Depends: libqt4-dev,
+	debhelper (>= 7.0.50~)
+Standards-Version: 3.9.5
+Homepage: https://github.com/timkb4cq/mx-user
+
+Package: mx-user
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: MX system user control assistant
+ The MX-User system assistant allows for easy administration of user accounts.
+
