@@ -218,9 +218,9 @@ void MConfig::refreshDesktop() {
       tok = strtok(line, " ");
       if (tok != NULL && strlen(tok) > 1 && strncmp(tok, "ftp", 3) != 0) {
         cmd = QString("grep '^%1' /etc/passwd >/dev/null").arg(tok);
-	if (system(cmd.toAscii()) == 0) {
+  if (system(cmd.toAscii()) == 0) {
           fromUserComboBox->addItem(tok);
-	}
+  }
       }
     }
     pclose(fp);
@@ -331,7 +331,7 @@ void MConfig::applyRestore() {
 
   // restore groups
   if (checkGroups->isChecked() && user.compare("root") != 0) {
-    cmd = QString("usermod -G audio,cdrom,dialout,dip,disk,fax,floppy,fuse,games,lp,lpadmin,netdev,plugdev,powerdev,scanner,sudo,tape,tty,uml-net,users,uucp,video,voice %1").arg(user);
+    cmd = QString("usermod -G audio,cdrom,dialout,dip,disk,fax,floppy,fuse,games,lp,lpadmin,netdev,plugdev,scanner,sudo,tape,tty,users,uucp,video,voice %1").arg(user);
     system(cmd.toAscii());
   }
 
@@ -352,7 +352,7 @@ void MConfig::applyDesktop() {
       tr("You must specify a 'copy to' destination. You can not copy to the desktop you are logged in to."));
     return;
   }
-  // verify 
+  // verify
   int ans = QMessageBox::critical(0, QString::null, tr("Before copying, close all other applications. Be sure the copy to destination is large enough to contain the files you are copying. Copying between desktops may overwrite or delete your files or preferences on the destination desktop. Are you sure you want to proceed?"),
     tr("Yes"), tr("No"));
   if (ans != 0) {
@@ -412,7 +412,7 @@ void MConfig::applyAdd() {
   }
   // check that user name is not already used
   cmd = QString("grep '^%1' /etc/passwd >/dev/null").arg( userNameEdit->text());
-  if (system(cmd.toAscii()) == 0) {     
+  if (system(cmd.toAscii()) == 0) {
     QMessageBox::critical(0, QString::null,
       tr("Sorry that name is in use. Please select a different name."));
     return;
@@ -613,7 +613,7 @@ void MConfig::syncDone(int exitCode, QProcess::ExitStatus exitStatus) {
       cmd = QString("rm -f %1/.confg/.qupzilla/*/*/").arg(toDir);
       system(cmd.toAscii());
       cmd = QString("find %1/,config/.qupzilla -type f -exec sed -i 's|home/%2|home/%3|g' '{}' \\;").arg(toDir).arg(fromUserComboBox->currentText()).arg(toUserComboBox->currentText());
-      system(cmd.toAscii()); 
+      system(cmd.toAscii());
     }
 
     if (entireRadioButton->isChecked()) {
@@ -668,11 +668,11 @@ void MConfig::on_fromUserComboBox_activated() {
       tok = strtok(line, " ");
       if (tok != NULL && strlen(tok) > 1 && strncmp(tok, "ftp", 3) != 0) {
         cmd = QString("grep '^%1' /etc/passwd >/dev/null").arg(tok);
-	if (system(cmd.toAscii()) == 0 && fromUserComboBox->currentText().compare(tok) != 0) {
-	  cmd = QString("who | grep '%1'").arg(tok);
+  if (system(cmd.toAscii()) == 0 && fromUserComboBox->currentText().compare(tok) != 0) {
+    cmd = QString("who | grep '%1'").arg(tok);
           if (system(cmd.toAscii()) != 0) {
             toUserComboBox->addItem(tok);
-	  }
+    }
         }
       }
     }
@@ -804,7 +804,7 @@ void MConfig::on_buttonOk_clicked() {
   close();
 }
 
-bool MConfig::hasInternetConnection() 
+bool MConfig::hasInternetConnection()
 {
    bool internetConnection  = false;
    // Query network interface status

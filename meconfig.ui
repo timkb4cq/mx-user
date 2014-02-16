@@ -418,7 +418,7 @@
          <property name="title">
           <string>Repair User Account</string>
          </property>
-         <layout class="QGridLayout" name="gridLayout">
+         <layout class="QGridLayout" name="_7">
           <item row="0" column="0">
            <widget class="QLabel" name="userLabel">
             <property name="sizePolicy">
