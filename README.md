@@ -17,7 +17,7 @@ Simple user configuration for MX
 #### TODO before Final:
 - Add tab
   - [ ] add "User group (optional)" to the existing "Add User Account" category
-  - ~[ ] When a group is named that does not exist, up pops a dialog box "Create a new group named <groupname>?"~
+  - ~~[ ] When a group is named that does not exist, up pops a dialog box "Create a new group named <groupname>?"~~
   - [x] Create a new category "Add Group to system" (addgroup command) using same confirm box as above
   - [ ] Add a list of groups that are automatically granted to a new user (man adduser) somewhere on the screen
 - Delete tab
