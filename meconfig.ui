@@ -42,7 +42,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>5</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="addUserTab">
       <attribute name="icon">
@@ -329,7 +329,7 @@
        <property name="spacing">
         <number>6</number>
        </property>
-       <item row="1" column="0" colspan="4">
+       <item row="1" column="0" colspan="3">
         <widget class="QGroupBox" name="restoreGroupBox">
          <property name="sizePolicy">
           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
@@ -400,7 +400,7 @@
          </layout>
         </widget>
        </item>
-       <item row="2" column="0" colspan="4">
+       <item row="2" column="0" colspan="3">
         <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -413,63 +413,43 @@
          </property>
         </spacer>
        </item>
-       <item row="0" column="3">
-        <spacer>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+       <item row="0" column="0" colspan="3">
+        <widget class="QGroupBox" name="groupBox_3">
+         <property name="title">
+          <string>Repair User Account</string>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>271</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="0" column="2">
-        <widget class="QComboBox" name="userComboBox">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Select user to repair</string>
-         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="userLabel">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Select user to repair</string>
+            </property>
+            <property name="text">
+             <string>User account to repair:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="userComboBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Select user to repair</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLabel" name="userLabel">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="toolTip">
-          <string>Select user to repair</string>
-         </property>
-         <property name="text">
-          <string>User:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="0">
-        <spacer>
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType">
-          <enum>QSizePolicy::Fixed</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>5</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </widget>
@@ -1273,7 +1253,6 @@
   <tabstop>buttonOk</tabstop>
   <tabstop>buttonApply</tabstop>
   <tabstop>buttonCancel</tabstop>
-  <tabstop>userComboBox</tabstop>
   <tabstop>checkGroups</tabstop>
   <tabstop>userNameEdit</tabstop>
   <tabstop>userPasswordEdit</tabstop>
