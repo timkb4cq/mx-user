@@ -849,7 +849,7 @@ void MConfig::on_buttonAbout_clicked() {
       alt=\"logo\" /><p align=\"center\"><b><h2>MX User Assistant</h2></b></p><p align=\"center\">MX14+git20140214</p><p><h3>Simple user\
       configuration for antiX MX</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">\
       http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">Copyright (c) antiX<br /><br /></p>"), 0, this);
-  msgBox.addButton(tr("&License"), QMessageBox::AcceptRole);
+  msgBox.addButton(tr("License"), QMessageBox::AcceptRole);
   msgBox.addButton(QMessageBox::Cancel);
   if (msgBox.exec() == QMessageBox::AcceptRole)
     QDesktopServices::openUrl(QUrl("file:///usr/local/share/doc/mx-user-license.html"));
