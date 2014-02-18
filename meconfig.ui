@@ -264,7 +264,7 @@
              <string>Also delete the user's home directory</string>
             </property>
             <property name="text">
-             <string>Delete user home director&amp;y</string>
+             <string>Delete user home directory</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -368,7 +368,7 @@
              <string/>
             </property>
             <property name="text">
-             <string>&amp;Group memberships</string>
+             <string>Group memberships</string>
             </property>
             <property name="shortcut">
              <string>Alt+G</string>
@@ -498,7 +498,7 @@
              <string>Select to copy and then delete differences</string>
             </property>
             <property name="text">
-             <string>S&amp;ync</string>
+             <string>Sync</string>
             </property>
             <property name="checked">
              <bool>false</bool>
@@ -627,7 +627,7 @@
              <string>Select to copy/sync Shared</string>
             </property>
             <property name="text">
-             <string>Sh&amp;ared folder</string>
+             <string>Shared folder</string>
             </property>
            </widget>
           </item>
@@ -643,7 +643,7 @@
              <string>Select to copy/sync entire home</string>
             </property>
             <property name="text">
-             <string>E&amp;ntire home</string>
+             <string>Entire home</string>
             </property>
             <property name="checked">
              <bool>true</bool>
@@ -1098,7 +1098,7 @@
         <string>Apply any changes then quit</string>
        </property>
        <property name="text">
-        <string>&amp;OK</string>
+        <string>OK</string>
        </property>
        <property name="icon">
         <iconset>
@@ -1121,7 +1121,7 @@
         <string>Apply any changes</string>
        </property>
        <property name="text">
-        <string>&amp;Apply</string>
+        <string>Apply</string>
        </property>
        <property name="icon">
         <iconset>
@@ -1138,7 +1138,7 @@
         <string>Cancel any changes then quit</string>
        </property>
        <property name="text">
-        <string>Ca&amp;ncel</string>
+        <string>Cancel</string>
        </property>
        <property name="icon">
         <iconset>
@@ -1186,7 +1186,7 @@
         <string>Display help </string>
        </property>
        <property name="text">
-        <string>&amp;Help</string>
+        <string>Help</string>
        </property>
        <property name="icon">
         <iconset>
@@ -1203,7 +1203,7 @@
         <string>About this application</string>
        </property>
        <property name="text">
-        <string>A&amp;bout...</string>
+        <string>About...</string>
        </property>
        <property name="icon">
         <iconset>
