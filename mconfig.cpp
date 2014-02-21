@@ -31,6 +31,7 @@ MConfig::MConfig(QWidget* parent) : QDialog(parent) {
   timer = new QTimer(this);
 
   tabWidget->setCurrentIndex(0);
+  refresh();
 }
 
 MConfig::~MConfig(){
@@ -134,31 +135,26 @@ QString cmd = QString("sed -i 's/%1/%2/g' %3").arg(oldtext).arg(newtext).arg(fil
 void MConfig::refresh() {
   int i = tabWidget->currentIndex();
   switch (i) {
-    case 1:
-      refreshDelete();
-      buttonApply->setEnabled(false);
-      buttonOk->setEnabled(true);
-      break;
 
-    case 2:
+    case 1:
       refreshRestore();
       buttonApply->setEnabled(false);
       buttonOk->setEnabled(true);
       break;
 
-    case 3:
+    case 2:
       refreshDesktop();
       buttonApply->setEnabled(true);
       buttonOk->setEnabled(false);
       break;
 
-    case 4:
+    case 3:
       refreshGroups();
       buttonApply->setEnabled(false);
       buttonOk->setEnabled(true);
       break;
 
-    case 5:
+    case 4:
       refreshMembership();
       buttonApply->setEnabled(false);
       buttonOk->setEnabled(true);
@@ -166,6 +162,7 @@ void MConfig::refresh() {
 
     default:
       refreshAdd();
+      refreshDelete();
       buttonApply->setEnabled(false);
       buttonOk->setEnabled(true);
       break;
@@ -232,6 +229,7 @@ void MConfig::refreshAdd() {
   userNameEdit->setText(tr(""));
   userPasswordEdit->setText("");
   userPassword2Edit->setText("");
+  addUserBox->setEnabled(true);
 }
 
 void MConfig::refreshDelete() {
@@ -243,6 +241,7 @@ void MConfig::refreshDelete() {
   // locale
   deleteUserCombo->clear();
   deleteUserCombo->addItem("none");
+  deleteUserBox->setEnabled(true);
   fp = popen("ls -1 /home", "r");
   if (fp != NULL) {
     while (fgets(line, sizeof line, fp) != NULL) {
@@ -683,10 +682,12 @@ void MConfig::on_userComboBox_activated() {
 }
 
 void MConfig::on_deleteUserCombo_activated() {
+  addUserBox->setEnabled(false);
   buttonApply->setEnabled(true);
 }
 
 void MConfig::on_userNameEdit_textEdited() {
+  deleteUserBox->setEnabled(false);
   buttonApply->setEnabled(true);
 }
 
@@ -746,33 +747,27 @@ void MConfig::on_buttonApply_clicked() {
 
   int i = tabWidget->currentIndex();
   switch (i) {
-    case 1:
-      setCursor(QCursor(Qt::WaitCursor));
-      applyDelete();
-      setCursor(QCursor(Qt::ArrowCursor));
-      buttonApply->setEnabled(false);
-      break;
 
-    case 2:
+    case 1:
       setCursor(QCursor(Qt::WaitCursor));
       applyRestore();
       setCursor(QCursor(Qt::ArrowCursor));
       buttonApply->setEnabled(false);
       break;
 
-    case 3:
+    case 2:
       applyDesktop();
       buttonApply->setEnabled(false);
       break;
 
-    case 4:
+    case 3:
       setCursor(QCursor(Qt::WaitCursor));
       applyGroup();
       setCursor(QCursor(Qt::ArrowCursor));
       buttonApply->setEnabled(false);
       break;
 
-    case 5:
+    case 4:
       setCursor(QCursor(Qt::WaitCursor));
       applyMembership();
       setCursor(QCursor(Qt::ArrowCursor));
@@ -780,7 +775,12 @@ void MConfig::on_buttonApply_clicked() {
 
     default:
       setCursor(QCursor(Qt::WaitCursor));
-      applyAdd();
+      if (addUserBox->isEnabled()) {
+        applyAdd();
+      } else {
+        applyDelete();
+      }
+      buttonApply->setEnabled(false);
       setCursor(QCursor(Qt::ArrowCursor));
       break;
   }
