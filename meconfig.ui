@@ -44,13 +44,13 @@
      <property name="currentIndex">
       <number>0</number>
      </property>
-     <widget class="QWidget" name="addUserTab">
+     <widget class="QWidget" name="userTab">
       <attribute name="icon">
        <iconset>
-        <normaloff>../../../../usr/share/icons/Tango/16x16/actions/add.png</normaloff>../../../../usr/share/icons/Tango/16x16/actions/add.png</iconset>
+        <normaloff>../../../../usr/share/icons/Tango/16x16/emotes/face-smile.png</normaloff>../../../../usr/share/icons/Tango/16x16/emotes/face-smile.png</iconset>
       </attribute>
       <attribute name="title">
-       <string>Add User</string>
+       <string>Add/Remove User</string>
       </attribute>
       <attribute name="toolTip">
        <string>Add a new user</string>
@@ -63,7 +63,7 @@
         <number>6</number>
        </property>
        <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox">
+        <widget class="QGroupBox" name="addUserBox">
          <property name="sizePolicy">
           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -188,7 +188,7 @@
          </layout>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <spacer>
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -201,41 +201,8 @@
          </property>
         </spacer>
        </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="delUserTab">
-      <attribute name="icon">
-       <iconset>
-        <normaloff>../../../../usr/share/icons/Tango/16x16/actions/gtk-remove.png</normaloff>../../../../usr/share/icons/Tango/16x16/actions/gtk-remove.png</iconset>
-      </attribute>
-      <attribute name="title">
-       <string>Delete User</string>
-      </attribute>
-      <attribute name="toolTip">
-       <string>Delete a user</string>
-      </attribute>
-      <layout class="QGridLayout">
-       <property name="margin">
-        <number>9</number>
-       </property>
-       <property name="spacing">
-        <number>6</number>
-       </property>
        <item row="1" column="0">
-        <spacer>
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="0" column="0">
-        <widget class="QGroupBox" name="groupBox_2">
+        <widget class="QGroupBox" name="deleteUserBox">
          <property name="sizePolicy">
           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
@@ -245,7 +212,7 @@
          <property name="title">
           <string>Delete User Account</string>
          </property>
-         <layout class="QGridLayout">
+         <layout class="QGridLayout" name="_9">
           <property name="margin">
            <number>9</number>
           </property>
@@ -1257,8 +1224,6 @@
   <tabstop>userNameEdit</tabstop>
   <tabstop>userPasswordEdit</tabstop>
   <tabstop>userPassword2Edit</tabstop>
-  <tabstop>deleteUserCombo</tabstop>
-  <tabstop>deleteHomeCheckBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>
