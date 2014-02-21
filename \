@@ -109,7 +109,7 @@
     </message>
     <message>
         <location filename="mconfig.cpp" line="693"/>
-        <source>&lt;p&gt;&lt;b&gt;MEPIS User Assistant&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Copyright (C) 2003-10 by MEPIS LLC.  All rights reserved.&lt;/p&gt;</source>
+        <source>&lt;p&gt;&lt;b&gt;MEPIS User Manager&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Copyright (C) 2003-10 by MEPIS LLC.  All rights reserved.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -117,7 +117,7 @@
     <name>MEConfig</name>
     <message>
         <location filename="meconfig.ui" line="25"/>
-        <source>MX User Assistant</source>
+        <source>MX User Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
