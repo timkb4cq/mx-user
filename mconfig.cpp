@@ -402,16 +402,15 @@ void MConfig::applyAdd() {
     QMessageBox::critical(0, QString::null,
       tr("The user name needs to be at least 2 characters long. Please select a longer name before proceeding."));
     return;
-  }
-  // see if username contains whitespace
-  QString cmd = QString("echo '^%1' | grep ^.*[[:space:]].").arg( userNameEdit->text());
-  if  (system(cmd.toAscii()) == 0) {
+  } else if (!userNameEdit->text().contains(QRegExp("^[a-z_][a-z0-9_-]*[$]?$"))) {
     QMessageBox::critical(0, QString::null,
-      tr("The user name may not contain any spaces. Please select another name."));
+      tr("The user name needs be lower case and it\n"
+      "cannot contain special characters or spaces\n"
+      "please choose another name before proceeding."));
     return;
   }
   // check that user name is not already used
-  cmd = QString("grep '^%1' /etc/passwd >/dev/null").arg( userNameEdit->text());
+  QString cmd = QString("grep '^%1' /etc/passwd >/dev/null").arg( userNameEdit->text());
   if (system(cmd.toAscii()) == 0) {
     QMessageBox::critical(0, QString::null,
       tr("Sorry that name is in use. Please select a different name."));
@@ -509,20 +508,19 @@ void MConfig::applyGroup() {
       QMessageBox::critical(0, QString::null,
         tr("The group name needs to be at least 2 characters long. Please select a longer name before proceeding."));
         return;
-    }
-    // see if username contains whitespace
-    QString cmd = QString("echo '^%1' | grep ^.*[[:space:]].").arg( groupNameEdit->text());
-    if  (system(cmd.toAscii()) == 0) {
+    } else if (!groupNameEdit->text().contains(QRegExp("^[a-z_][a-z0-9_-]*[$]?$"))) {
       QMessageBox::critical(0, QString::null,
-        tr("The group name may not contain any spaces. Please select another name."));
-        return;
+        tr("The group name needs be lower case and it \n"
+        "cannot contain special characters or spaces\n"
+        "please choose another name before proceeding."));
+      return;
     }
     // check that group name is not already used
-    cmd = QString("grep '^%1' /etc/group >/dev/null").arg( groupNameEdit->text());
+    QString cmd = QString("grep '^%1' /etc/group >/dev/null").arg( groupNameEdit->text());
     if (system(cmd.toAscii()) == 0) {
       QMessageBox::critical(0, QString::null,
         tr("Sorry that group name already exists. Please select a different name."));
-        return;
+      return;
     }
     // run addgroup command
     cmd = QString("addgroup --system %1").arg( groupNameEdit->text());
