@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.0" language="hi_IN">
 <context>
     <name>MConfig</name>
     <message>
@@ -52,6 +52,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../mconfig.cpp" line="406"/>
+        <source>The user name needs be lower case and it
+cannot contain special characters or spaces
+please choose another name before proceeding.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../mconfig.cpp" line="415"/>
         <source>Sorry that name is in use. Please select a different name.</source>
         <translation type="unfinished"></translation>
@@ -94,13 +101,6 @@
     <message>
         <location filename="../mconfig.cpp" line="508"/>
         <source>The group name needs to be at least 2 characters long. Please select a longer name before proceeding.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../mconfig.cpp" line="406"/>
-        <source>The user name needs be lower case and it
-cannot contain special characters or spaces
-please choose another name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -194,6 +194,16 @@ please choose another name before proceeding.</source>
 <context>
     <name>MEConfig</name>
     <message>
+        <location filename="../meconfig.ui" line="26"/>
+        <source>MX User Manager</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../meconfig.ui" line="53"/>
+        <source>Add/Remove User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../meconfig.ui" line="56"/>
         <source>Add a new user</source>
         <translation type="unfinished"></translation>
@@ -262,6 +272,11 @@ please choose another name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../meconfig.ui" line="234"/>
+        <source>Delete user home directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../meconfig.ui" line="250"/>
         <location filename="../meconfig.ui" line="272"/>
         <location filename="../meconfig.ui" line="850"/>
@@ -297,6 +312,11 @@ please choose another name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../meconfig.ui" line="338"/>
+        <source>Group memberships</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../meconfig.ui" line="341"/>
         <source>Alt+G</source>
         <translation type="unfinished"></translation>
@@ -317,9 +337,19 @@ please choose another name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../meconfig.ui" line="386"/>
+        <source>Repair User Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../meconfig.ui" line="398"/>
         <location filename="../meconfig.ui" line="414"/>
         <source>Select user to repair</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../meconfig.ui" line="401"/>
+        <source>User account to repair:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -335,6 +365,11 @@ please choose another name before proceeding.</source>
     <message>
         <location filename="../meconfig.ui" line="465"/>
         <source>Select to copy and then delete differences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../meconfig.ui" line="468"/>
+        <source>Sync</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -375,48 +410,13 @@ please choose another name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../meconfig.ui" line="610"/>
-        <source>Select to copy/sync entire home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../meconfig.ui" line="26"/>
-        <source>MX User Manager</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../meconfig.ui" line="53"/>
-        <source>Add/Remove User</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../meconfig.ui" line="234"/>
-        <source>Delete user home directory</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../meconfig.ui" line="338"/>
-        <source>Group memberships</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../meconfig.ui" line="386"/>
-        <source>Repair User Account</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../meconfig.ui" line="401"/>
-        <source>User account to repair:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../meconfig.ui" line="468"/>
-        <source>Sync</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../meconfig.ui" line="597"/>
         <source>Shared folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../meconfig.ui" line="610"/>
+        <source>Select to copy/sync entire home</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -536,28 +536,13 @@ please choose another name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../meconfig.ui" line="1091"/>
-        <source>Apply</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../meconfig.ui" line="1108"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../meconfig.ui" line="1156"/>
-        <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../meconfig.ui" line="1173"/>
-        <source>About...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../meconfig.ui" line="1088"/>
         <source>Apply any changes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../meconfig.ui" line="1091"/>
+        <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -571,6 +556,11 @@ please choose another name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../meconfig.ui" line="1108"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../meconfig.ui" line="1115"/>
         <source>Alt+N</source>
         <translation type="unfinished"></translation>
@@ -581,6 +571,11 @@ please choose another name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../meconfig.ui" line="1156"/>
+        <source>Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../meconfig.ui" line="1163"/>
         <source>Alt+H</source>
         <translation type="unfinished"></translation>
@@ -588,6 +583,11 @@ please choose another name before proceeding.</source>
     <message>
         <location filename="../meconfig.ui" line="1170"/>
         <source>About this application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../meconfig.ui" line="1173"/>
+        <source>About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -1,2 +1,3 @@
-mx-user 		usr/local/bin/
-
+mx-user 			 usr/local/bin
+mx-user.desktop		 usr/share/applications/mx
+translations/*.qm 	 usr/share/mx-user/locales
