@@ -330,7 +330,8 @@ void MConfig::applyRestore() {
 
   // restore groups
   if (checkGroups->isChecked() && user.compare("root") != 0) {
-    cmd = QString("usermod -G audio,cdrom,dialout,dip,disk,fax,floppy,fuse,games,lp,lpadmin,netdev,plugdev,scanner,sudo,tape,tty,users,uucp,video,voice %1").arg(user);
+    cmd = QString("sed -n '/^EXTRA_GROUPS=/s/^EXTRA_GROUPS=//p' /etc/adduser.conf | sed  -e 's/ /,/g' -e 's/\"//g'");
+    cmd = "usermod -G " + getCmdOut(cmd) + " " + user;
     system(cmd.toAscii());
   }
 
@@ -844,7 +845,7 @@ void MConfig::executeChild(const char* cmd, const char* param)
 void MConfig::on_buttonAbout_clicked() {
   QMessageBox msgBox(QMessageBox::NoIcon, tr("About MX User Manager"),
     tr("<img src=\"/usr/share/icons/mx-user.png\"\
-      alt=\"logo\" /><p align=\"center\"><b><h2>MX User Manager</h2></b></p><p align=\"center\">MX14+git20140221</p><p><h3>Simple user\
+      alt=\"logo\" /><p align=\"center\"><b><h2>MX User Manager</h2></b></p><p align=\"center\">MX14+git20140222</p><p><h3>Simple user\
       configuration for antiX MX</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">\
       http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">Copyright (c) antiX<br /><br /></p>"), 0, this);
   msgBox.addButton(tr("License"), QMessageBox::AcceptRole);
