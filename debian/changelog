@@ -1,3 +1,13 @@
+mx-user (0.13.98+git20140221-mx140+1) mx; urgency=low
+
+  * Change application name to MX User Manager.
+  * Add desktop file
+  * Enhance debian/install.
+  * Add dependencies for adduser and rsync.
+  * src.pro: change "muser" to "mx-user" for translation files.  
+
+ -- Steven Pusser (Stevo) <maintainer@mepiscommunity.org>  Fri, 21 Feb 2014 21:05:17 -0800
+
 mx-user (0.13.98-mx140+1) mx; urgency=low
 
   * Initial release. 

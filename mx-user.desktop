@@ -1,0 +1,19 @@
+[Desktop Entry]
+Name=MX User Manager
+Name[de]=Benutzer-Manager für MX
+Name[es]=Gestor de usuarios para MX
+Name[fr]=Gestionnaire de l'utilisateur pour MX
+Name[it]=Gestore di utenti per MX
+Name[nl]=MX Gebruikersbeheer
+Name[sv]=Användarhanterare för MX
+NAme[el]=διαχειριστής του χρήστη για MX
+Name[ru]=абонентская система управления для MX
+Comment=Simple user configuration
+Comment[es]=Configuración simple de usuarios
+Comment[nl]=Eenvoudige gebruikersconfiguratie
+Comment[sv]=Enkel användar-konfiguration
+Exec=mx-user
+Icon=/usr/share/icons/mx-user.png
+NoDisplay=false
+Categories=System;
+Type=Application 
