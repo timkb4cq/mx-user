@@ -451,11 +451,11 @@ void MConfig::applyAdd() {
   if (fpok) {
     QMessageBox::information(0, QString::null,
       tr("The user was added ok."));
+    refresh();
   } else {
     QMessageBox::critical(0, QString::null,
       tr("Failed to add the user."));
   }
-  refresh();
 }
 
 void MConfig::applyDelete() {
@@ -779,8 +779,8 @@ void MConfig::on_buttonApply_clicked() {
         applyAdd();
       } else {
         applyDelete();
+        buttonApply->setEnabled(false);
       }
-      buttonApply->setEnabled(false);
       setCursor(QCursor(Qt::ArrowCursor));
       break;
   }
