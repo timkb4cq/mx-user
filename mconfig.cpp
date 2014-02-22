@@ -680,6 +680,9 @@ void MConfig::on_fromUserComboBox_activated() {
 
 void MConfig::on_userComboBox_activated() {
   buttonApply->setEnabled(true);
+  if (userComboBox->currentText() == "none") {
+    refresh();
+  }
 }
 
 void MConfig::on_deleteUserCombo_activated() {
