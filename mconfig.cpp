@@ -696,11 +696,17 @@ void MConfig::on_deleteUserCombo_activated() {
 void MConfig::on_userNameEdit_textEdited() {
   deleteUserBox->setEnabled(false);
   buttonApply->setEnabled(true);
+  if (userNameEdit->text() == "") {
+    refresh();
+  }
 }
 
 void MConfig::on_groupNameEdit_textEdited() {
   deleteBox->setEnabled(false);
   buttonApply->setEnabled(true);
+  if (groupNameEdit->text() == "") {
+    refresh();
+  }
 }
 
 void MConfig::on_deleteGroupCombo_activated() {
