@@ -685,6 +685,9 @@ void MConfig::on_userComboBox_activated() {
 void MConfig::on_deleteUserCombo_activated() {
   addUserBox->setEnabled(false);
   buttonApply->setEnabled(true);
+  if (deleteUserCombo->currentText() == "none") {
+    refresh();
+  }
 }
 
 void MConfig::on_userNameEdit_textEdited() {
@@ -700,6 +703,9 @@ void MConfig::on_groupNameEdit_textEdited() {
 void MConfig::on_deleteGroupCombo_activated() {
   addBox->setEnabled(false);
   buttonApply->setEnabled(true);
+  if (deleteGroupCombo->currentText() == "none") {
+    refresh();
+  }
 }
 
 void MConfig::on_userComboMembership_activated() {
