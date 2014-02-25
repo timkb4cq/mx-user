@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>MConfig</name>
     <message>
@@ -10,183 +10,193 @@
     </message>
     <message>
         <location filename="../mconfig.cpp" line="325"/>
-        <location filename="../mconfig.cpp" line="356"/>
-        <location filename="../mconfig.cpp" line="464"/>
-        <location filename="../mconfig.cpp" line="536"/>
-        <location filename="../mconfig.cpp" line="563"/>
+        <location filename="../mconfig.cpp" line="357"/>
+        <location filename="../mconfig.cpp" line="465"/>
+        <location filename="../mconfig.cpp" line="537"/>
+        <location filename="../mconfig.cpp" line="564"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../mconfig.cpp" line="325"/>
-        <location filename="../mconfig.cpp" line="356"/>
-        <location filename="../mconfig.cpp" line="464"/>
-        <location filename="../mconfig.cpp" line="536"/>
-        <location filename="../mconfig.cpp" line="563"/>
+        <location filename="../mconfig.cpp" line="357"/>
+        <location filename="../mconfig.cpp" line="465"/>
+        <location filename="../mconfig.cpp" line="537"/>
+        <location filename="../mconfig.cpp" line="564"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="351"/>
+        <location filename="../mconfig.cpp" line="352"/>
         <source>You must specify a &apos;copy to&apos; destination. You can not copy to the desktop you are logged in to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="355"/>
+        <location filename="../mconfig.cpp" line="356"/>
         <source>Before copying, close all other applications. Be sure the copy to destination is large enough to contain the files you are copying. Copying between desktops may overwrite or delete your files or preferences on the destination desktop. Are you sure you want to proceed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="377"/>
+        <location filename="../mconfig.cpp" line="378"/>
         <source>Synchronizing desktop...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="379"/>
+        <location filename="../mconfig.cpp" line="380"/>
         <source>Copying desktop...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="402"/>
+        <location filename="../mconfig.cpp" line="403"/>
         <source>The user name needs to be at least 2 characters long. Please select a longer name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="406"/>
+        <location filename="../mconfig.cpp" line="407"/>
         <source>The user name needs be lower case and it
 cannot contain special characters or spaces
 please choose another name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="415"/>
+        <location filename="../mconfig.cpp" line="416"/>
         <source>Sorry that name is in use. Please select a different name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="420"/>
+        <location filename="../mconfig.cpp" line="421"/>
         <source>The user password entries do not match.  Please try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="425"/>
+        <location filename="../mconfig.cpp" line="426"/>
         <source>The user password needs to be at least 2 characters long. Please select a longer name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="453"/>
+        <location filename="../mconfig.cpp" line="454"/>
         <source>The user was added ok.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="456"/>
+        <location filename="../mconfig.cpp" line="458"/>
         <source>Failed to add the user.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="462"/>
+        <location filename="../mconfig.cpp" line="463"/>
         <source>This action can not be undone. Are you sure you want to delete user %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="492"/>
+        <location filename="../mconfig.cpp" line="493"/>
         <source>The user has been deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="495"/>
+        <location filename="../mconfig.cpp" line="496"/>
         <source>Failed to delete the user.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="508"/>
+        <location filename="../mconfig.cpp" line="509"/>
         <source>The group name needs to be at least 2 characters long. Please select a longer name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="512"/>
+        <location filename="../mconfig.cpp" line="513"/>
         <source>The group name needs be lower case and it 
 cannot contain special characters or spaces
 please choose another name before proceeding.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="521"/>
+        <location filename="../mconfig.cpp" line="522"/>
         <source>Sorry that group name already exists. Please select a different name.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="528"/>
+        <location filename="../mconfig.cpp" line="529"/>
         <source>The system group was added ok.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="531"/>
+        <location filename="../mconfig.cpp" line="532"/>
         <source>Failed to add the system group.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="534"/>
+        <location filename="../mconfig.cpp" line="535"/>
         <source>This action can not be undone. Are you sure you want to delete group %1?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="541"/>
+        <location filename="../mconfig.cpp" line="542"/>
         <source>The group has been deleted.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="544"/>
+        <location filename="../mconfig.cpp" line="545"/>
         <source>Failed to delete the group.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="562"/>
+        <location filename="../mconfig.cpp" line="563"/>
         <source>Are you sure you want to make these changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="568"/>
+        <location filename="../mconfig.cpp" line="569"/>
         <source>The changes have been applied.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="571"/>
+        <location filename="../mconfig.cpp" line="572"/>
         <source>Failed to apply group changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="634"/>
+        <location filename="../mconfig.cpp" line="635"/>
         <source>Synchronizing desktop...ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="636"/>
+        <location filename="../mconfig.cpp" line="637"/>
         <source>Copying desktop...ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="640"/>
+        <location filename="../mconfig.cpp" line="641"/>
         <source>Synchronizing desktop...failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="642"/>
+        <location filename="../mconfig.cpp" line="643"/>
         <source>Copying desktop...failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="845"/>
+        <location filename="../mconfig.cpp" line="864"/>
         <source>About MX User Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="846"/>
-        <source>&lt;img src=&quot;/usr/share/icons/mx-user.png&quot;      alt=&quot;logo&quot; /&gt;&lt;p align=&quot;center&quot;&gt;&lt;b&gt;&lt;h2&gt;MX User Manager&lt;/h2&gt;&lt;/b&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;MX14+git20140221&lt;/p&gt;&lt;p&gt;&lt;h3&gt;Simple user      configuration for antiX MX&lt;/h3&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;http://www.mepiscommunity.org/mx&quot;&gt;      http://www.mepiscommunity.org/mx&lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;Copyright (c) antiX&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</source>
+        <location filename="../mconfig.cpp" line="866"/>
+        <source>MX User Manager</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../mconfig.cpp" line="850"/>
+        <location filename="../mconfig.cpp" line="867"/>
+        <source>Simple user configuration for antiX MX</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mconfig.cpp" line="868"/>
+        <source>Copyright (c) antiX&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../mconfig.cpp" line="869"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
