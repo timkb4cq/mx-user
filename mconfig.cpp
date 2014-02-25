@@ -720,6 +720,9 @@ void MConfig::on_deleteGroupCombo_activated() {
 void MConfig::on_userComboMembership_activated() {
   buildListGroups();
   buttonApply->setEnabled(true);
+  if (userComboMembership->currentText() == "none") {
+    refresh();
+  }
 }
 
 void MConfig::buildListGroups(){
