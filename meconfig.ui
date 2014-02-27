@@ -42,7 +42,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="userTab">
       <attribute name="icon">
@@ -650,7 +650,7 @@
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="whatToSyncLabel">
             <property name="text">
              <string>What to copy/sync:</string>
             </property>

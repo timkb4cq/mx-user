@@ -307,8 +307,8 @@ void MConfig::applyDesktop() {
     fromDir.append("/Documents");
     toDir.append("/Documents");
   } else if (qupRadioButton->isChecked()) {
-    fromDir.append("/.config/.qupzilla");
-    toDir.append("/.config/.qupzilla");
+    fromDir.append("/.config/qupzilla");
+    toDir.append("/.config/qupzilla");
   } else if (sharedRadioButton->isChecked()) {
     fromDir.append("/Shared");
     toDir.append("/Shared");
@@ -533,6 +533,9 @@ void MConfig::syncTime() {
 }
 
 void MConfig::syncDone(int exitCode, QProcess::ExitStatus exitStatus) {
+  timer->stop();
+  syncProgressBar->setValue(100);
+  setCursor(QCursor(Qt::ArrowCursor));
   if (exitStatus == QProcess::NormalExit) {
     QString fromDir = QString("/home/%1").arg(fromUserComboBox->currentText());
     QString toDir = QString("/home/%1").arg(toUserComboBox->currentText());
@@ -544,15 +547,13 @@ void MConfig::syncDone(int exitCode, QProcess::ExitStatus exitStatus) {
       toDir.append("/Shared");
     }
 */    // fix owner
-    QString cmd = QString("chown -R %1:users %2").arg(toUserComboBox->currentText()).arg(toDir);
+    QString cmd = QString("chown -R %1:%1 %2").arg(toUserComboBox->currentText()).arg(toDir);
     system(cmd.toAscii());
 
     // fix files
     if (entireRadioButton->isChecked() || qupRadioButton->isChecked()) {
-      // fix qupzilla tree
-      cmd = QString("rm -f %1/.confg/.qupzilla/*/*/").arg(toDir);
-      system(cmd.toAscii());
-      cmd = QString("find %1/,config/.qupzilla -type f -exec sed -i 's|home/%2|home/%3|g' '{}' \\;").arg(toDir).arg(fromUserComboBox->currentText()).arg(toUserComboBox->currentText());
+      // fix qupzilla settings.ini
+      cmd = QString("find %1/.config/qupzilla/profiles/default/settings.ini -type f -exec sed -i 's|home/%2|home/%3|g' '{}' \\;").arg(toDir).arg(fromUserComboBox->currentText()).arg(toUserComboBox->currentText());
       system(cmd.toAscii());
     }
 
@@ -575,19 +576,26 @@ void MConfig::syncDone(int exitCode, QProcess::ExitStatus exitStatus) {
     }
     if (syncRadioButton->isChecked()) {
       syncStatusEdit->setText(tr("Synchronizing desktop...ok"));
+      QMessageBox::information(0, QString::null,
+        tr("Synchronizing desktop...ok"));
     } else {
       syncStatusEdit->setText(tr("Copying desktop...ok"));
+      QMessageBox::information(0, QString::null,
+        tr("Copying desktop...ok"));
     }
   } else {
     if (syncRadioButton->isChecked()) {
       syncStatusEdit->setText(tr("Synchronizing desktop...failed"));
+      QMessageBox::critical(0, QString::null,
+        tr("Synchronizing desktop...failed"));
     } else {
       syncStatusEdit->setText(tr("Copying desktop...failed"));
+      QMessageBox::critical(0, QString::null,
+        tr("Copying desktop...failed"));
     }
   }
-  timer->stop();
   syncProgressBar->setValue(0);
-  setCursor(QCursor(Qt::ArrowCursor));
+  buttonApply->setEnabled(true);
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -768,7 +776,7 @@ void MConfig::on_buttonAbout_clicked() {
   QMessageBox msgBox(QMessageBox::NoIcon, tr("About MX User Manager"),
                      "<p align=\"center\"><b><h2>" +
                      tr("MX User Manager") +
-                     "</h2></b></p><p align=\"center\">MX14+git20140226</p><p align=\"center\"><h3>" +
+                     "</h2></b></p><p align=\"center\">MX14+git20140227</p><p align=\"center\"><h3>" +
                      tr("Simple user configuration for antiX MX") +
                      "</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">" +
                      tr("Copyright (c) antiX<br /><br /></p>"), 0, this);
