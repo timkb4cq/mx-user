@@ -74,60 +74,6 @@ QStringList MConfig::getCmdOuts(QString cmd) {
   return results;
 }
 
-QString MConfig::getCmdValue(QString cmd, QString key, QString keydel, QString valdel) {
-  const char *ret = "";
-  char line[260];
-
-  QStringList strings = getCmdOuts(cmd);
-  for (QStringList::Iterator it = strings.begin(); it != strings.end(); ++it) {
-    strcpy(line, ((QString)*it).toAscii());
-    char* keyptr = strstr(line, key.toAscii());
-    if (keyptr != NULL) {
-      // key found
-      strtok(keyptr, keydel.toAscii());
-      const char* val = strtok(NULL, valdel.toAscii());
-      if (val != NULL) {
-        ret = val;
-      }
-      break;
-    }
-  }
-  return QString (ret);
-}
-
-QStringList MConfig::getCmdValues(QString cmd, QString key, QString keydel, QString valdel) {
-  char line[130];
-  FILE* fp = popen(cmd.toAscii(), "r");
-  QStringList results;
-  if (fp == NULL) {
-    return results;
-  }
-  int i;
-  while (fgets(line, sizeof line, fp) != NULL) {
-    i = strlen(line);
-    line[--i] = '\0';
-    char* keyptr = strstr(line, key.toAscii());
-    if (keyptr != NULL) {
-      // key found
-      strtok(keyptr, keydel.toAscii());
-      const char* val = strtok(NULL, valdel.toAscii());
-      if (val != NULL) {
-        results.append(val);
-      }
-    }
-  }
-  pclose(fp);
-  return results;
-}
-
-bool MConfig::replaceStringInFile(QString oldtext, QString newtext, QString filepath) {
-
-QString cmd = QString("sed -i 's/%1/%2/g' %3").arg(oldtext).arg(newtext).arg(filepath);
-  if (system(cmd.toAscii()) != 0) {
-    return false;
-  }
-  return true;
-}
 
 /////////////////////////////////////////////////////////////////////////
 // common
@@ -817,50 +763,12 @@ void MConfig::on_buttonOk_clicked() {
   close();
 }
 
-bool MConfig::hasInternetConnection()
-{
-   bool internetConnection  = false;
-   // Query network interface status
-   QStringList interfaceList  = getCmdOuts("ifconfig -a -s");
-   int i=1;
-   while (i<interfaceList.size()) {
-      QString interface = interfaceList.at(i);
-      interface = interface.left(interface.indexOf(" "));
-      if ((interface != "lo") && (interface != "wmaster0") && (interface != "wifi0")) {
-         QStringList ifStatus  = getCmdOuts(QString("ifconfig %1").arg(interface));
-         QString unwrappedList = ifStatus.join(" ");
-         if (unwrappedList.indexOf("UP ") != -1) {
-            if (unwrappedList.indexOf(" RUNNING ") != -1) {
-               internetConnection  = true;
-            }
-         }
-      }
-      ++i;
-   }
-   return internetConnection;
-}
-
-void MConfig::executeChild(const char* cmd, const char* param)
-{
-   pid_t childId;
-   childId = fork();
-   if (childId >= 0)
-      {
-      if (childId == 0)
-         {
-         execl(cmd, cmd, param, (char *) 0);
-
-         //system(cmd);
-         }
-      }
-}
-
 // show about
 void MConfig::on_buttonAbout_clicked() {
-  QMessageBox msgBox(QMessageBox::NoIcon, tr("About MX User Manager"), 
-                     "<img src=\"/usr/share/icons/mx-user.png alt=\"logo\" /><p align=\"center\"><b><h2>" + 
-                     tr("MX User Manager") + "</h2></b></p><p align=\"center\">MX14+git20140225</p><p align=\"center\"><h3>" + 
-                     tr("Simple user configuration for antiX MX") + "</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">" + 
+  QMessageBox msgBox(QMessageBox::NoIcon, tr("About MX User Manager"),
+                     "<img src=\"/usr/share/icons/mx-user.png alt=\"logo\" /><p align=\"center\"><b><h2>" +
+                     tr("MX User Manager") + "</h2></b></p><p align=\"center\">MX14+git20140226</p><p align=\"center\"><h3>" +
+                     tr("Simple user configuration for antiX MX") + "</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">" +
                      tr("Copyright (c) antiX<br /><br /></p>"), 0, this);
   msgBox.addButton(tr("License"), QMessageBox::AcceptRole);
   msgBox.addButton(QMessageBox::Cancel);
