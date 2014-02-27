@@ -539,14 +539,8 @@ void MConfig::syncDone(int exitCode, QProcess::ExitStatus exitStatus) {
   if (exitStatus == QProcess::NormalExit) {
     QString fromDir = QString("/home/%1").arg(fromUserComboBox->currentText());
     QString toDir = QString("/home/%1").arg(toUserComboBox->currentText());
-/*    if (docsRadioButton->isChecked()) {
-      toDir.append("/Documents");
-    } else if (qupRadioButton->isChecked()) {
-      toDir.append("/.qupzilla");
-    } else if (sharedRadioButton->isChecked()) {
-      toDir.append("/Shared");
-    }
-*/    // fix owner
+
+    // fix owner
     QString cmd = QString("chown -R %1:%1 %2").arg(toUserComboBox->currentText()).arg(toDir);
     system(cmd.toAscii());
 
