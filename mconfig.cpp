@@ -787,5 +787,5 @@ void MConfig::on_buttonAbout_clicked() {
 }
 
 void MConfig::on_buttonHelp_clicked() {
-  QDesktopServices::openUrl(QUrl("file:///usr/local/share/doc/mxapps.html"));
+  QDesktopServices::openUrl(QUrl("file:///usr/local/share/doc/mxapps.html#user"));
 }
