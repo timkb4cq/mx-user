@@ -279,11 +279,12 @@ void MConfig::applyRestore() {
 
   // restore Qupzilla configs
   if (checkQupzilla->isChecked()) {
-    cmd = QString("/bin/rm -dfr %1/.config/qupzilla/*/*/*").arg(home);
+    cmd = QString("/bin/rm -fr %1/.config/qupzilla/*/*/*").arg(home);
     system(cmd.toAscii());
   }
   setCursor(QCursor(Qt::ArrowCursor));
-
+  QMessageBox::information(0, QString::null,
+    tr("User settings have been restored."));
   refresh();
 }
 
@@ -390,7 +391,7 @@ void MConfig::applyAdd() {
   } else {
     fpok = false;
   }
-
+  setCursor(QCursor(Qt::ArrowCursor));
   if (fpok) {
     QMessageBox::information(0, QString::null,
       tr("The user was added ok."));
@@ -430,6 +431,7 @@ void MConfig::applyDelete() {
     } else {
       fpok = false;
     }
+    setCursor(QCursor(Qt::ArrowCursor));
     if (fpok) {
       QMessageBox::information(0, QString::null,
         tr("The user has been deleted."));
@@ -466,6 +468,7 @@ void MConfig::applyGroup() {
     }
     // run addgroup command
     cmd = QString("addgroup --system %1").arg( groupNameEdit->text());
+    setCursor(QCursor(Qt::ArrowCursor));
     if (system(cmd.toAscii()) == 0) {
       QMessageBox::information(0, QString::null,
         tr("The system group was added ok."));
@@ -479,6 +482,7 @@ void MConfig::applyGroup() {
                  tr("Yes"), tr("No"));
     if (ans == 0) {
       cmd = QString("delgroup %1").arg(deleteGroupCombo->currentText());
+      setCursor(QCursor(Qt::ArrowCursor));
       if (system(cmd.toAscii()) == 0) {
         QMessageBox::information(0, QString::null,
           tr("The group has been deleted."));
@@ -506,6 +510,7 @@ void MConfig::applyMembership() {
           tr("Yes"), tr("No"));
   if (ans == 0) {
       cmd = QString("usermod -G %1 %2").arg(cmd).arg(userComboMembership->currentText());
+      setCursor(QCursor(Qt::ArrowCursor));
       if (system(cmd.toAscii()) == 0) {
         QMessageBox::information(0, QString::null,
           tr("The changes have been applied."));
