@@ -775,7 +775,7 @@ void MConfig::on_buttonAbout_clicked() {
   QMessageBox msgBox(QMessageBox::NoIcon, tr("About MX User Manager"),
                      "<p align=\"center\"><b><h2>" +
                      tr("MX User Manager") +
-                     "</h2></b></p><p align=\"center\">MX14+git20140227</p><p align=\"center\"><h3>" +
+                     "</h2></b></p><p align=\"center\">MX14+git20140303</p><p align=\"center\"><h3>" +
                      tr("Simple user configuration for antiX MX") +
                      "</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">" +
                      tr("Copyright (c) antiX<br /><br /></p>"), 0, this);
