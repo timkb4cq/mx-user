@@ -1,3 +1,12 @@
+mx-user (0.13.98+git20140303-mx140+1) mx; urgency=low
+
+  * various improvements and fixes
+
+
+ -- Adrian <maintainer@mepiscommunity.org> 
+
+
+
 mx-user (0.13.98+git20140221-mx140+1) mx; urgency=low
 
   * Change application name to MX User Manager.
