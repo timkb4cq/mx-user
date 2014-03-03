@@ -1134,7 +1134,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap>../../../../usr/local/share/icons/mxfcelogo.png</pixmap>
+        <pixmap>icons/mxfcelogo.png</pixmap>
        </property>
        <property name="scaledContents">
         <bool>true</bool>
