@@ -38,6 +38,7 @@ public:
     // helpers
     static QString getCmdOut(QString cmd);
     static QStringList getCmdOuts(QString cmd);
+    void displaySite(QString site);
     // common
     void refresh();
     // special

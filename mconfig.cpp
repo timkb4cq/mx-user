@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include <QDesktopServices>
+#include <QWebView>
 #include <QUrl>
 
 MConfig::MConfig(QWidget* parent) : QDialog(parent) {
@@ -775,16 +775,29 @@ void MConfig::on_buttonAbout_clicked() {
   QMessageBox msgBox(QMessageBox::NoIcon, tr("About MX User Manager"),
                      "<p align=\"center\"><b><h2>" +
                      tr("MX User Manager") +
-                     "</h2></b></p><p align=\"center\">MX14+git20140303</p><p align=\"center\"><h3>" +
+                     "</h2></b></p><p align=\"center\">MX14+git20140304</p><p align=\"center\"><h3>" +
                      tr("Simple user configuration for antiX MX") +
                      "</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">" +
                      tr("Copyright (c) antiX<br /><br /></p>"), 0, this);
   msgBox.addButton(tr("License"), QMessageBox::AcceptRole);
   msgBox.addButton(QMessageBox::Cancel);
   if (msgBox.exec() == QMessageBox::AcceptRole)
-    QDesktopServices::openUrl(QUrl("file:///usr/local/share/doc/mx-user-license.html"));
+      displaySite("file:///usr/local/share/doc/mx-user-license.html");
 }
 
+
+// Help button clicked
 void MConfig::on_buttonHelp_clicked() {
-  QDesktopServices::openUrl(QUrl("file:///usr/local/share/doc/mxapps.html#user"));
+  displaySite("file:///usr/local/share/doc/mxapps.html#user");
+}
+
+// pop up a window and display website
+void MConfig::displaySite(QString site) {
+  QWidget *window = new QWidget(this, Qt::Dialog);
+  window->setWindowTitle(this->windowTitle());
+  window->resize(800, 500);
+  QWebView *webview = new QWebView(window);
+  webview->load(QUrl(site));
+  webview->show();
+  window->show();
 }

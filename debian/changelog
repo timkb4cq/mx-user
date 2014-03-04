@@ -1,3 +1,9 @@
+mx-user (0.13.98+git20140304-mx140+1) mx; urgency=low
+
+  * added window for help/license
+
+ -- Adrian <adrian@mx1>  Tue, 04 Mar 2014 10:50:58 -0500
+
 mx-user (0.13.98+git20140303-mx140+1) mx; urgency=low
 
   * various improvements and fixes
