@@ -201,7 +201,6 @@ please choose another name before proceeding.</source>
     <message>
         <location filename="meconfig.ui" line="53"/>
         <source>Add/Remove User</source>
-        <oldsource>Add User</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>

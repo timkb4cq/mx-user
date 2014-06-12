@@ -38,7 +38,9 @@ public:
     // helpers
     static QString getCmdOut(QString cmd);
     static QStringList getCmdOuts(QString cmd);
-    void displaySite(QString site);
+    static QString getCmdValue(QString cmd, QString key, QString keydel, QString valdel);
+    static QStringList getCmdValues(QString cmd, QString key, QString keydel, QString valdel);
+    static bool replaceStringInFile(QString oldtext, QString newtext, QString filepath);
     // common
     void refresh();
     // special
@@ -77,6 +79,9 @@ public slots:
 
 protected:
 
+private:
+    static bool hasInternetConnection();
+    static void executeChild(const char* cmd, const char* param);
 protected slots:
   /*$PROTECTED_SLOTS$*/
 

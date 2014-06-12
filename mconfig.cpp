@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include <QWebView>
+#include <QDesktopServices>
 #include <QUrl>
 
 MConfig::MConfig(QWidget* parent) : QDialog(parent) {
@@ -74,6 +74,60 @@ QStringList MConfig::getCmdOuts(QString cmd) {
   return results;
 }
 
+QString MConfig::getCmdValue(QString cmd, QString key, QString keydel, QString valdel) {
+  const char *ret = "";
+  char line[260];
+
+  QStringList strings = getCmdOuts(cmd);
+  for (QStringList::Iterator it = strings.begin(); it != strings.end(); ++it) {
+    strcpy(line, ((QString)*it).toAscii());
+    char* keyptr = strstr(line, key.toAscii());
+    if (keyptr != NULL) {
+      // key found
+      strtok(keyptr, keydel.toAscii());
+      const char* val = strtok(NULL, valdel.toAscii());
+      if (val != NULL) {
+        ret = val;
+      }
+      break;
+    }
+  }
+  return QString (ret);
+}
+
+QStringList MConfig::getCmdValues(QString cmd, QString key, QString keydel, QString valdel) {
+  char line[130];
+  FILE* fp = popen(cmd.toAscii(), "r");
+  QStringList results;
+  if (fp == NULL) {
+    return results;
+  }
+  int i;
+  while (fgets(line, sizeof line, fp) != NULL) {
+    i = strlen(line);
+    line[--i] = '\0';
+    char* keyptr = strstr(line, key.toAscii());
+    if (keyptr != NULL) {
+      // key found
+      strtok(keyptr, keydel.toAscii());
+      const char* val = strtok(NULL, valdel.toAscii());
+      if (val != NULL) {
+        results.append(val);
+      }
+    }
+  }
+  pclose(fp);
+  return results;
+}
+
+bool MConfig::replaceStringInFile(QString oldtext, QString newtext, QString filepath) {
+
+QString cmd = QString("sed -i 's/%1/%2/g' %3").arg(oldtext).arg(newtext).arg(filepath);
+  if (system(cmd.toAscii()) != 0) {
+    return false;
+  }
+  return true;
+}
 
 /////////////////////////////////////////////////////////////////////////
 // common
@@ -126,7 +180,7 @@ void MConfig::refreshRestore() {
   int i;
   // locale
   userComboBox->clear();
-  userComboBox->addItem(tr("none"));
+  userComboBox->addItem("none");
   userComboBox->addItem("root");
   fp = popen("ls -1 /home", "r");
   if (fp != NULL) {
@@ -186,7 +240,7 @@ void MConfig::refreshDelete() {
   int i;
   // locale
   deleteUserCombo->clear();
-  deleteUserCombo->addItem(tr("none"));
+  deleteUserCombo->addItem("none");
   deleteUserBox->setEnabled(true);
   fp = popen("ls -1 /home", "r");
   if (fp != NULL) {
@@ -212,7 +266,7 @@ void MConfig::refreshGroups() {
   groupNameEdit->setText(tr(""));
   addBox->setEnabled(true);
   deleteGroupCombo->clear();
-  deleteGroupCombo->addItem(tr("none"));
+  deleteGroupCombo->addItem("none");
   deleteBox->setEnabled(true);
   fp = popen("cat /etc/group | cut -f 1 -d :", "r");
   if (fp != NULL) {
@@ -234,7 +288,7 @@ void MConfig::refreshMembership() {
   FILE *fp;
   int i;
   userComboMembership->clear();
-  userComboMembership->addItem(tr("none"));
+  userComboMembership->addItem("none");
   listGroups->clear();
   fp = popen("ls -1 /home", "r");
   if (fp != NULL) {
@@ -257,6 +311,10 @@ void MConfig::refreshMembership() {
 // apply but do not close
 void MConfig::applyRestore() {
   QString user = userComboBox->currentText();
+  if (user.compare("none") == 0) {
+    // no user selected
+    return;
+  }
   QString home = user;
   if (user.compare("root") != 0) {
     home = QString("/home/%1").arg(user);
@@ -279,12 +337,11 @@ void MConfig::applyRestore() {
 
   // restore Qupzilla configs
   if (checkQupzilla->isChecked()) {
-    cmd = QString("/bin/rm -fr %1/.config/qupzilla/*/*/*").arg(home);
+    cmd = QString("/bin/rm -dfr %1/.config/qupzilla/*/*/*").arg(home);
     system(cmd.toAscii());
   }
   setCursor(QCursor(Qt::ArrowCursor));
-  QMessageBox::information(0, QString::null,
-    tr("User settings have been restored."));
+
   refresh();
 }
 
@@ -308,8 +365,8 @@ void MConfig::applyDesktop() {
     fromDir.append("/Documents");
     toDir.append("/Documents");
   } else if (qupRadioButton->isChecked()) {
-    fromDir.append("/.config/qupzilla");
-    toDir.append("/.config/qupzilla");
+    fromDir.append("/.config/.qupzilla");
+    toDir.append("/.config/.qupzilla");
   } else if (sharedRadioButton->isChecked()) {
     fromDir.append("/Shared");
     toDir.append("/Shared");
@@ -391,7 +448,7 @@ void MConfig::applyAdd() {
   } else {
     fpok = false;
   }
-  setCursor(QCursor(Qt::ArrowCursor));
+
   if (fpok) {
     QMessageBox::information(0, QString::null,
       tr("The user was added ok."));
@@ -431,7 +488,6 @@ void MConfig::applyDelete() {
     } else {
       fpok = false;
     }
-    setCursor(QCursor(Qt::ArrowCursor));
     if (fpok) {
       QMessageBox::information(0, QString::null,
         tr("The user has been deleted."));
@@ -468,7 +524,6 @@ void MConfig::applyGroup() {
     }
     // run addgroup command
     cmd = QString("addgroup --system %1").arg( groupNameEdit->text());
-    setCursor(QCursor(Qt::ArrowCursor));
     if (system(cmd.toAscii()) == 0) {
       QMessageBox::information(0, QString::null,
         tr("The system group was added ok."));
@@ -482,7 +537,6 @@ void MConfig::applyGroup() {
                  tr("Yes"), tr("No"));
     if (ans == 0) {
       cmd = QString("delgroup %1").arg(deleteGroupCombo->currentText());
-      setCursor(QCursor(Qt::ArrowCursor));
       if (system(cmd.toAscii()) == 0) {
         QMessageBox::information(0, QString::null,
           tr("The group has been deleted."));
@@ -510,7 +564,6 @@ void MConfig::applyMembership() {
           tr("Yes"), tr("No"));
   if (ans == 0) {
       cmd = QString("usermod -G %1 %2").arg(cmd).arg(userComboMembership->currentText());
-      setCursor(QCursor(Qt::ArrowCursor));
       if (system(cmd.toAscii()) == 0) {
         QMessageBox::information(0, QString::null,
           tr("The changes have been applied."));
@@ -538,21 +591,26 @@ void MConfig::syncTime() {
 }
 
 void MConfig::syncDone(int exitCode, QProcess::ExitStatus exitStatus) {
-  timer->stop();
-  syncProgressBar->setValue(100);
-  setCursor(QCursor(Qt::ArrowCursor));
   if (exitStatus == QProcess::NormalExit) {
     QString fromDir = QString("/home/%1").arg(fromUserComboBox->currentText());
     QString toDir = QString("/home/%1").arg(toUserComboBox->currentText());
-
-    // fix owner
-    QString cmd = QString("chown -R %1:%1 %2").arg(toUserComboBox->currentText()).arg(toDir);
+/*    if (docsRadioButton->isChecked()) {
+      toDir.append("/Documents");
+    } else if (qupRadioButton->isChecked()) {
+      toDir.append("/.qupzilla");
+    } else if (sharedRadioButton->isChecked()) {
+      toDir.append("/Shared");
+    }
+*/    // fix owner
+    QString cmd = QString("chown -R %1:users %2").arg(toUserComboBox->currentText()).arg(toDir);
     system(cmd.toAscii());
 
     // fix files
     if (entireRadioButton->isChecked() || qupRadioButton->isChecked()) {
-      // fix qupzilla settings.ini
-      cmd = QString("find %1/.config/qupzilla/profiles/default/settings.ini -type f -exec sed -i 's|home/%2|home/%3|g' '{}' \\;").arg(toDir).arg(fromUserComboBox->currentText()).arg(toUserComboBox->currentText());
+      // fix qupzilla tree
+      cmd = QString("rm -f %1/.confg/.qupzilla/*/*/").arg(toDir);
+      system(cmd.toAscii());
+      cmd = QString("find %1/,config/.qupzilla -type f -exec sed -i 's|home/%2|home/%3|g' '{}' \\;").arg(toDir).arg(fromUserComboBox->currentText()).arg(toUserComboBox->currentText());
       system(cmd.toAscii());
     }
 
@@ -575,26 +633,19 @@ void MConfig::syncDone(int exitCode, QProcess::ExitStatus exitStatus) {
     }
     if (syncRadioButton->isChecked()) {
       syncStatusEdit->setText(tr("Synchronizing desktop...ok"));
-      QMessageBox::information(0, QString::null,
-        tr("Synchronizing desktop...ok"));
     } else {
       syncStatusEdit->setText(tr("Copying desktop...ok"));
-      QMessageBox::information(0, QString::null,
-        tr("Copying desktop...ok"));
     }
   } else {
     if (syncRadioButton->isChecked()) {
       syncStatusEdit->setText(tr("Synchronizing desktop...failed"));
-      QMessageBox::critical(0, QString::null,
-        tr("Synchronizing desktop...failed"));
     } else {
       syncStatusEdit->setText(tr("Copying desktop...failed"));
-      QMessageBox::critical(0, QString::null,
-        tr("Copying desktop...failed"));
     }
   }
+  timer->stop();
   syncProgressBar->setValue(0);
-  buttonApply->setEnabled(true);
+  setCursor(QCursor(Qt::ArrowCursor));
 }
 
 /////////////////////////////////////////////////////////////////////////
@@ -629,7 +680,7 @@ void MConfig::on_fromUserComboBox_activated() {
 
 void MConfig::on_userComboBox_activated() {
   buttonApply->setEnabled(true);
-  if (userComboBox->currentIndex() == 0) {
+  if (userComboBox->currentText() == "none") {
     refresh();
   }
 }
@@ -637,7 +688,7 @@ void MConfig::on_userComboBox_activated() {
 void MConfig::on_deleteUserCombo_activated() {
   addUserBox->setEnabled(false);
   buttonApply->setEnabled(true);
-  if (deleteUserCombo->currentIndex() == 0) {
+  if (deleteUserCombo->currentText() == "none") {
     refresh();
   }
 }
@@ -661,7 +712,7 @@ void MConfig::on_groupNameEdit_textEdited() {
 void MConfig::on_deleteGroupCombo_activated() {
   addBox->setEnabled(false);
   buttonApply->setEnabled(true);
-  if (deleteGroupCombo->currentIndex() == 0) {
+  if (deleteGroupCombo->currentText() == "none") {
     refresh();
   }
 }
@@ -669,7 +720,7 @@ void MConfig::on_deleteGroupCombo_activated() {
 void MConfig::on_userComboMembership_activated() {
   buildListGroups();
   buttonApply->setEnabled(true);
-  if (userComboMembership->currentIndex() == 0) {
+  if (userComboMembership->currentText() == "none") {
     refresh();
   }
 }
@@ -770,34 +821,57 @@ void MConfig::on_buttonOk_clicked() {
   close();
 }
 
+bool MConfig::hasInternetConnection()
+{
+   bool internetConnection  = false;
+   // Query network interface status
+   QStringList interfaceList  = getCmdOuts("ifconfig -a -s");
+   int i=1;
+   while (i<interfaceList.size()) {
+      QString interface = interfaceList.at(i);
+      interface = interface.left(interface.indexOf(" "));
+      if ((interface != "lo") && (interface != "wmaster0") && (interface != "wifi0")) {
+         QStringList ifStatus  = getCmdOuts(QString("ifconfig %1").arg(interface));
+         QString unwrappedList = ifStatus.join(" ");
+         if (unwrappedList.indexOf("UP ") != -1) {
+            if (unwrappedList.indexOf(" RUNNING ") != -1) {
+               internetConnection  = true;
+            }
+         }
+      }
+      ++i;
+   }
+   return internetConnection;
+}
+
+void MConfig::executeChild(const char* cmd, const char* param)
+{
+   pid_t childId;
+   childId = fork();
+   if (childId >= 0)
+      {
+      if (childId == 0)
+         {
+         execl(cmd, cmd, param, (char *) 0);
+
+         //system(cmd);
+         }
+      }
+}
+
 // show about
 void MConfig::on_buttonAbout_clicked() {
   QMessageBox msgBox(QMessageBox::NoIcon, tr("About MX User Manager"),
-                     "<p align=\"center\"><b><h2>" +
-                     tr("MX User Manager") +
-                     "</h2></b></p><p align=\"center\">MX14+git20140304</p><p align=\"center\"><h3>" +
-                     tr("Simple user configuration for antiX MX") +
-                     "</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">" +
-                     tr("Copyright (c) antiX<br /><br /></p>"), 0, this);
+    tr("<img src=\"/usr/share/icons/mx-user.png\"\
+      alt=\"logo\" /><p align=\"center\"><b><h2>MX User Manager</h2></b></p><p align=\"center\">MX14+git20140224</p><p><h3>Simple user\
+      configuration for antiX MX</h3></p><p align=\"center\"><a href=\"http://www.mepiscommunity.org/mx\">\
+      http://www.mepiscommunity.org/mx</a><br /></p><p align=\"center\">Copyright (c) antiX<br /><br /></p>"), 0, this);
   msgBox.addButton(tr("License"), QMessageBox::AcceptRole);
   msgBox.addButton(QMessageBox::Cancel);
   if (msgBox.exec() == QMessageBox::AcceptRole)
-      displaySite("file:///usr/local/share/doc/mx-user-license.html");
+    QDesktopServices::openUrl(QUrl("file:///usr/local/share/doc/mx-user-license.html"));
 }
 
-
-// Help button clicked
 void MConfig::on_buttonHelp_clicked() {
-  displaySite("file:///usr/local/share/doc/mxapps.html#user");
-}
-
-// pop up a window and display website
-void MConfig::displaySite(QString site) {
-  QWidget *window = new QWidget(this, Qt::Dialog);
-  window->setWindowTitle(this->windowTitle());
-  window->resize(800, 500);
-  QWebView *webview = new QWebView(window);
-  webview->load(QUrl(site));
-  webview->show();
-  window->show();
+  QDesktopServices::openUrl(QUrl("file:///usr/local/share/doc/mxapps.html"));
 }

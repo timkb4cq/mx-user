@@ -1,18 +1,3 @@
-mx-user (0.13.98+git20140304-mx140+1) mx; urgency=low
-
-  * added window for help/license
-
- -- Adrian <adrian@mx1>  Tue, 04 Mar 2014 10:50:58 -0500
-
-mx-user (0.13.98+git20140303-mx140+1) mx; urgency=low
-
-  * various improvements and fixes
-
-
- -- Adrian <maintainer@mepiscommunity.org> Mon, 03 Mar 2014 19:00:00 -8000
-
-
-
 mx-user (0.13.98+git20140221-mx140+1) mx; urgency=low
 
   * Change application name to MX User Manager.
