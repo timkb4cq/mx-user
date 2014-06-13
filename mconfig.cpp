@@ -20,7 +20,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-#include <QDesktopServices>
+#include <QWebView>
 #include <QUrl>
 
 MConfig::MConfig(QWidget* parent) : QDialog(parent) {
@@ -869,9 +869,21 @@ void MConfig::on_buttonAbout_clicked() {
   msgBox.addButton(tr("License"), QMessageBox::AcceptRole);
   msgBox.addButton(QMessageBox::Cancel);
   if (msgBox.exec() == QMessageBox::AcceptRole)
-    QDesktopServices::openUrl(QUrl("file:///usr/local/share/doc/mx-user-license.html"));
+    displaySite("file:///usr/local/share/doc/mx-user-license.html");
 }
 
+// Help button clicked
 void MConfig::on_buttonHelp_clicked() {
-  QDesktopServices::openUrl(QUrl("file:///usr/local/share/doc/mxapps.html"));
+  displaySite("file:///usr/local/share/doc/mxapps.html#user");
+}
+
+// pop up a window and display website
+void MConfig::displaySite(QString site) {
+   QWidget *window = new QWidget(this, Qt::Dialog);
+   window->setWindowTitle(this->windowTitle());
+   window->resize(800, 500);
+   QWebView *webview = new QWebView(window);
+   webview->load(QUrl(site));
+   webview->show();
+   window->show();
 }

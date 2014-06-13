@@ -22,3 +22,4 @@ HEADERS += mconfig.h
 SOURCES += main.cpp mconfig.cpp
 LIBS += -lcrypt
 CONFIG += release warn_on thread qt
+QT += webkit
