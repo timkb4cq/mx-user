@@ -343,7 +343,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QCheckBox" name="checkQupzilla">
+           <widget class="QCheckBox" name="checkBrowser">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
               <horstretch>0</horstretch>
@@ -357,7 +357,7 @@
              <string/>
             </property>
             <property name="text">
-             <string>Qupzilla configs</string>
+             <string>Mozilla (Iceweasel or Firefox) configs</string>
             </property>
             <property name="shortcut">
              <string>Alt+X</string>
@@ -618,7 +618,7 @@
            </widget>
           </item>
           <item row="3" column="0">
-           <widget class="QRadioButton" name="qupRadioButton">
+           <widget class="QRadioButton" name="mozillaRadioButton">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
               <horstretch>0</horstretch>
@@ -626,10 +626,10 @@
              </sizepolicy>
             </property>
             <property name="toolTip">
-             <string>Select to copy/sync default browser</string>
+             <string>Select to copy/sync the browser configuration</string>
             </property>
             <property name="text">
-             <string>Qupzilla folder</string>
+             <string>Mozilla (Firefox or Iceweasel) configs</string>
             </property>
            </widget>
           </item>
