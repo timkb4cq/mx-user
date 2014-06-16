@@ -15,6 +15,8 @@ TRANSLATIONS += translations/mx-user_ar.ts \
                 translations/mx-user_pl.ts \
                 translations/mx-user_pt.ts \
                 translations/mx-user_pt_BR.ts \ 
+                translations/mx-user_ro.ts \ 
+                translations/mx-user_sv.ts \ 
                 translations/mx-user_zh_CN.ts \
                 translations/mx-user_zh_TW.ts 
 FORMS += meconfig.ui
