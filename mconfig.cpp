@@ -198,7 +198,8 @@ void MConfig::refreshRestore() {
     pclose(fp);
   }
   checkGroups->setChecked(false);
-  checkBrowser->setChecked(false);
+  checkMozilla->setChecked(false);
+  checkQupzilla->setChecked(false);
 }
 
 void MConfig::refreshDesktop() {
@@ -336,10 +337,18 @@ void MConfig::applyRestore() {
   }
 
   // restore Mozilla configs
-  if (checkBrowser->isChecked()) {
+  if (checkMozilla->isChecked()) {
     cmd = QString("/bin/rm -r %1/.mozilla").arg(home);
     system(cmd.toAscii());
   }
+  // restore Qupzilla configs
+  if (checkQupzilla->isChecked()) {
+    cmd = QString("/usr/bin/rsync -qa /etc/skel/.config/qupzilla/ %1/.config/qupzilla/ --delete-after").arg(home);
+    system(cmd.toAscii());
+    cmd = QString("find /home/%1/.config/qupzilla/profiles/default -type f -exec sed -i 's|home/demo|home/%1|g' '{}' \\;").arg(userComboBox->currentText());
+    system(cmd.toAscii());
+  }
+
   setCursor(QCursor(Qt::ArrowCursor));
 
   refresh();
@@ -367,6 +376,9 @@ void MConfig::applyDesktop() {
   } else if (mozillaRadioButton->isChecked()) {
     fromDir.append("/.mozilla");
     toDir.append("/.mozilla");
+  } else if (qupRadioButton->isChecked()) {
+    fromDir.append("/.config/qupzilla");
+    toDir.append("/.config/qupzilla");
   } else if (sharedRadioButton->isChecked()) {
     fromDir.append("/Shared");
     toDir.append("/Shared");
@@ -594,25 +606,23 @@ void MConfig::syncDone(int exitCode, QProcess::ExitStatus exitStatus) {
   if (exitStatus == QProcess::NormalExit) {
     QString fromDir = QString("/home/%1").arg(fromUserComboBox->currentText());
     QString toDir = QString("/home/%1").arg(toUserComboBox->currentText());
-/*    if (docsRadioButton->isChecked()) {
-      toDir.append("/Documents");
-    } else if (browserRadioButton->isChecked()) {
-      toDir.append("/.mozilla");
-    } else if (sharedRadioButton->isChecked()) {
-      toDir.append("/Shared");
-    }
-*/    // fix owner
+
+    // fix owner
     QString cmd = QString("chown -R %1:users %2").arg(toUserComboBox->currentText()).arg(toDir);
     system(cmd.toAscii());
 
-    // fix files
+    // fix /home/username in some files
     if (entireRadioButton->isChecked() || mozillaRadioButton->isChecked()) {
       // fix mozilla tree
-      cmd = QString("rm -fr %1/.mozilla").arg(toDir);
-      system(cmd.toAscii());
       cmd = QString("find %1/.mozilla -type f -exec sed -i 's|home/%2|home/%3|g' '{}' \\;").arg(toDir).arg(fromUserComboBox->currentText()).arg(toUserComboBox->currentText());
+      system(cmd.toAscii());      
+    }
+    if (entireRadioButton->isChecked() || qupRadioButton->isChecked()) {
+      // fix qupzilla tree
+      cmd = QString("find %1/.config/qupzilla/profiles/default -type f -exec sed -i 's|home/%2|home/%3|g' '{}' \\;").arg(toDir).arg(fromUserComboBox->currentText()).arg(toUserComboBox->currentText());
       system(cmd.toAscii());
     }
+
 
     if (entireRadioButton->isChecked()) {
       //delete some files

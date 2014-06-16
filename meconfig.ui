@@ -42,7 +42,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="userTab">
       <attribute name="icon">
@@ -343,7 +343,7 @@
            </widget>
           </item>
           <item row="1" column="0">
-           <widget class="QCheckBox" name="checkBrowser">
+           <widget class="QCheckBox" name="checkMozilla">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="Minimum">
               <horstretch>0</horstretch>
@@ -361,6 +361,13 @@
             </property>
             <property name="shortcut">
              <string>Alt+X</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QCheckBox" name="checkQupzilla">
+            <property name="text">
+             <string>Qupzilla configs</string>
             </property>
            </widget>
           </item>
@@ -653,6 +660,13 @@
            <widget class="QLabel" name="label_2">
             <property name="text">
              <string>What to copy/sync:</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <widget class="QRadioButton" name="qupRadioButton">
+            <property name="text">
+             <string>Qupzilla configs</string>
             </property>
            </widget>
           </item>
